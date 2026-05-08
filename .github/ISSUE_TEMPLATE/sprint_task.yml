@@ -1,0 +1,45 @@
+# Mechanism: Top-level routing metadata. 
+# Architecture: Automates pipeline categorization and state variable initialization, bypassing manual triage latency.
+name: Sprint Task Execution
+description: Instantiate a strict sprint-bound engineering task.
+title: "[TASK]: "
+labels: ["status: backlog", "needs triage"]
+body:
+  # Mechanism: Static markdown injection. 
+  # Architecture: Intercepts user flow to display mandatory preconditions before database ingestion.
+  - type: markdown
+    attributes:
+      value: |
+        **Requirement**: All tasks must possess explicit boundary conditions for the active sprint.
+  # Mechanism: Constrained single-line text input. 
+  # Architecture: Enforces explicit architectural targeting (Domain/Module) to prevent ambiguous scope creep.
+  - type: input
+    id: target_component
+    attributes:
+      label: Target System Component
+      description: Specify exact module, directory, or microservice architecture.
+    validations:
+      required: true
+  # Mechanism: Multi-line text buffer. 
+  # Architecture: Mandates boolean evaluation parameters (Definition of Done) to validate automated Pull Request closure state machines.
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance Criteria
+      description: Define objective operational states required for task completion. Output strictly as bullet points.
+    validations:
+      required: true
+  # Mechanism: Enumerated discrete array dropdown. 
+  # Architecture: Quantifies execution risk profile, routing subsequent PRs to appropriate strict/lenient review pipelines.
+  - type: dropdown
+    id: complexity_estimation
+    attributes:
+      label: Complexity Estimation (Fibonacci)
+      options:
+        - "1"
+        - "2"
+        - "3"
+        - "5"
+        - "8"
+    validations:
+      required: true
