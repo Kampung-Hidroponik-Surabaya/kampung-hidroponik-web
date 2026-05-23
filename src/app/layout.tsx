@@ -15,7 +15,10 @@ const ubuntu = Ubuntu_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Kampung Hidroponik Surabaya",
+  title: {
+    template: "%s | Kampung Hidroponik",
+    default: "Kampung Hidroponik Surabaya",
+  },
   description: "Urban farming berbasis hidroponik di Surabaya",
 };
 
@@ -28,3 +31,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+
+export const viewport = {
+  themeColor: "#43766C",
+  width: "device-width",
+  initialScale: 1,
+};
