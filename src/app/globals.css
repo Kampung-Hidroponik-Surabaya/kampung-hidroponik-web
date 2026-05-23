@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-teal:  #43766C;
+  --color-cream: #F8FAE5;
+  --color-tan:   #B19470;
+  --color-brown: #76453B;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-brand-cream text-brand-brown font-sans;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-title;
+  }
+}
