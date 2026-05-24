@@ -120,9 +120,9 @@ export default function Navbar() {
                         <Image
                             src="/images/logo.png"
                             alt="Kampung Hidroponik Surabaya"
-                            width={1000}
-                            height={796}
-                            className="object-contain"
+                            width={96}
+                            height={240}
+                            className="object-contain h-10"
                             priority
                         />
                     </Link>
@@ -180,14 +180,14 @@ export default function Navbar() {
                 aria-hidden={!drawerOpen}
             >
                 {/* ── Drawer header: SVG logo + close button ────── */}
-                <div className="flex items-start justify-between px-6 pt-10">
+                <div className="flex items-start justify-between px-8 pt-10">
                     {/* SVG logo → open state per spec */}
                     <Image
                         src="/icons/logo.svg"
                         alt="Kampung Hidroponik Surabaya"
                         width={160}
                         height={100}
-                        className="object-contain"
+                        className="object-contain w-auto h-auto"
                     />
 
                     {/* Close button → X icon top-right */}
