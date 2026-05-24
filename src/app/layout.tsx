@@ -22,7 +22,11 @@ export const metadata: Metadata = {
   description: "Urban farming berbasis hidroponik di Surabaya",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="id">
       <body className={`${atkinson.variable} ${ubuntu.variable}`}>
