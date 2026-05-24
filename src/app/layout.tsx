@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Atkinson_Hyperlegible, Ubuntu_Sans } from "next/font/google";
+import Navbar from "@/components/layout/Navbar";
 import "./globals.css";
 
 const atkinson = Atkinson_Hyperlegible({
@@ -30,6 +31,7 @@ export default function RootLayout({
   return (
     <html lang="id">
       <body className={`${atkinson.variable} ${ubuntu.variable}`}>
+        <Navbar />
         {children}
       </body>
     </html>
