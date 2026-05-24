@@ -1,5 +1,5 @@
-export const metadata = { title: "Beranda" };
+export const metadata = { title: "Anggota" };
 
-export default function HomePage() {
-  return <main>Landing Page</main>;
+export default function AnggotaPage() {
+    return <main>Anggota</main>;
 }
