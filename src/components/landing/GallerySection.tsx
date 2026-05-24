@@ -41,6 +41,7 @@ function GalleryImage({ alt, bgColor }: { alt: string; bgColor: string }) {
         src="/images/placeholder.jpg"
         alt={alt}
         fill
+        sizes="100vw"
         style={{ objectFit: "cover" }}
       />
     </div>
