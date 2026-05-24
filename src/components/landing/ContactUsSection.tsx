@@ -56,7 +56,7 @@ function ContactCard({
       // w-[55vw] max-w-[200px] → narrower than BlogCard
       // 2 cards comfortably visible on 375px viewport
       // ring-1 ring-brand-tan/30 → subtle border
-      className="snap-start flex w-[55vw] max-w-[200px] flex-shrink-0 flex-col items-center gap-3 overflow-hidden rounded-2xl bg-white p-4 ring-1 ring-brand-tan/30"
+      className="flex w-[55vw] max-w-[200px] flex-shrink-0 snap-start flex-col items-center gap-3 overflow-hidden rounded-2xl bg-white p-4 ring-1 ring-brand-tan/30"
     >
       {/* ── Avatar placeholder ────────────────────────────
                 Replace with next/image once asset confirmed

@@ -62,7 +62,7 @@ function BlogCard({
       // flex-shrink-0 → prevents card from collapsing in flex row
       // scroll-snap-align-start → snaps to left edge on scroll
       // w-[75vw] max-w-[280px] → 75% viewport width, capped at 280px
-      className="scroll-snap-align-start flex w-[75vw] max-w-[280px] flex-shrink-0 flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-brand-tan/30"
+      className="flex w-[75vw] max-w-[280px] flex-shrink-0 snap-start flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-brand-tan/30"
     >
       {/* ── Thumbnail placeholder ─────────────────────── */}
       <div className={["aspect-video w-full", bgColor].join(" ")} />
@@ -161,11 +161,11 @@ export default function RekommendasiBlogSection() {
                 absolute inset → fills section behind content
                 z-0 → sits below all content
             ─────────────────────────────────────────────── */}
-      <div
-        className="absolute inset-0 z-0 bg-brand-brown"
-        style={{
-          clipPath: "ellipse(120% 85% at 50% 55%)",
-        }}
+      <img
+        src="/icons/blob-brown.svg"
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 z-0 size-full object-cover"
       />
 
       {/* ── Content layer ─────────────────────────────────

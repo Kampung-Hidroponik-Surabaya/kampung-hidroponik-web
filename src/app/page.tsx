@@ -27,6 +27,8 @@ export default function HomePage() {
       <RekommendasiBlogSection />
       <ContactUsSection />
       <GallerySection />
+      <div className="bg-brand-cream py-6" />{" "}
+      {/* Spacerto prevent Footer overlap on mobile */}
       <FooterSection />
     </main>
   );

@@ -6,6 +6,8 @@
 // assets + Sanity schema confirmed
 // ─────────────────────────────────────────────────────────────
 
+import Image from "next/image";
+
 // ── Placeholder data ──────────────────────────────────────────
 // 6 items → 2-col × 3-row grid
 const PLACEHOLDER_IMAGES = [
@@ -26,17 +28,20 @@ function GalleryImage({ alt, bgColor }: { alt: string; bgColor: string }) {
     // relative → required for future next/image fill prop
     // aspect-square → 1:1 ratio enforced via CSS
     // overflow-hidden → clips image at rounded corners
-    <div className="relative aspect-square w-full overflow-hidden rounded-xl">
+    <div
+      className={`relative aspect-square w-full overflow-hidden rounded-xl ${bgColor}`}
+    >
       {/* ── Image placeholder ─────────────────────────────
                 Replace with:
                 <Image src={imageUrl} alt={alt} fill
                   style={{ objectFit: "cover" }} />
                 once assets confirmed with UI/UX designer
             ─────────────────────────────────────────────── */}
-      <div
-        className={["absolute inset-0", bgColor].join(" ")}
-        role="img"
-        aria-label={alt}
+      <Image
+        src="/images/placeholder.jpg"
+        alt={alt}
+        fill
+        style={{ objectFit: "cover" }}
       />
     </div>
   );
@@ -49,28 +54,34 @@ function GalleryImage({ alt, bgColor }: { alt: string; bgColor: string }) {
 // ─────────────────────────────────────────────────────────────
 export default function GallerySection() {
   return (
-    <section className="bg-brand-teal px-4 py-10">
-      {/* ── Section Heading ───────────────────────────────
-                text-brand-cream → light text on teal bg
-                Contrast: #f8fae5 on #43766c passes WCAG AA
+    <section className="relative overflow-hidden px-4 py-10">
+      {/* ── SVG blob background ───────────────────────────
+                teal blob SVG → fills section behind content
+                aria-hidden → decorative only
             ─────────────────────────────────────────────── */}
-      <h2 className="mb-6 text-center font-title text-2xl font-bold text-brand-cream">
-        Gallery
-      </h2>
+      <img
+        src="/icons/blob-teal.svg"
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 z-0 size-full object-cover"
+      />
 
-      {/* ── Image Grid ────────────────────────────────────
-                grid-cols-2 → 2 equal columns
-                gap-3 → uniform gutter between all cells
-                6 items → auto-fills 3 rows
+      {/* ── Content layer ─────────────────────────────────
+                relative z-10 → above SVG blob
             ─────────────────────────────────────────────── */}
-      <div className="grid grid-cols-2 gap-3">
-        {PLACEHOLDER_IMAGES.map((image) => (
-          <GalleryImage
-            key={image.id}
-            alt={image.alt}
-            bgColor={image.bgColor}
-          />
-        ))}
+      <div className="relative z-10">
+        <h2 className="mb-6 text-center font-title text-2xl font-bold text-brand-cream">
+          Gallery
+        </h2>
+        <div className="grid grid-cols-2 gap-3">
+          {PLACEHOLDER_IMAGES.map((image) => (
+            <GalleryImage
+              key={image.id}
+              alt={image.alt}
+              bgColor={image.bgColor}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

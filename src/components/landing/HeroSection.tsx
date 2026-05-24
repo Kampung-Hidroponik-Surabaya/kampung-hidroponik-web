@@ -6,6 +6,7 @@
 // asset is confirmed with UI/UX designer
 // ─────────────────────────────────────────────────────────────
 
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
@@ -15,8 +16,21 @@ export default function HeroSection() {
       // min-h-svh → fills viewport height on mobile (svh accounts
       // for mobile browser chrome better than vh)
       // relative → stacking context for overlay + text layers
-      className="relative flex min-h-svh flex-col justify-end bg-brand-teal"
+      className="relative flex min-h-svh flex-col justify-end"
     >
+      {/* ── Background image ──────────────────────────────
+                fill → covers full section container
+                priority → eager load, above the fold
+                object-cover → crops to fill without distortion
+            ─────────────────────────────────────────────── */}
+      <Image
+        src="/images/hero-image.png"
+        alt="Latar belakang Kampung Hidroponik"
+        fill
+        priority
+        style={{ objectFit: "cover" }}
+        className="z-0"
+      />
       {/* ── Overlay ───────────────────────────────────────────
                 Dark gradient from bottom → top
                 Ensures text legibility over any bg image
@@ -25,10 +39,10 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
 
       {/* ── Content ───────────────────────────────────────────
-                relative + z-10 → sits above overlay div
+                relative + z-20 → sits above both image (z-0) and overlay (z-10) 
                 pb-10 px-6 → breathing room from viewport edges
             ──────────────────────────────────────────────────── */}
-      <div className="relative z-10 flex flex-col gap-4 px-6 pb-10">
+      <div className="relative z-20 flex flex-col gap-4 px-6 pb-10">
         <h1 className="font-title text-3xl font-bold text-brand-cream">
           Tentang Kami
         </h1>

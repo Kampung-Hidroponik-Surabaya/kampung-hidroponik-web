@@ -12,7 +12,7 @@ export default function FooterSection() {
     <footer
       // bg-brand-teal → flush with GallerySection above
       // border-t separates footer from gallery visually
-      className="flex flex-col items-center gap-4 border-t border-brand-cream/20 bg-brand-teal px-4 py-10"
+      className="flex flex-col items-center gap-4 bg-brand-teal px-4 py-10"
     >
       {/* ── Logo placeholder ──────────────────────────────
                 Replace with:
