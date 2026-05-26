@@ -20,7 +20,7 @@ export default function HomePage() {
     // page-wrapper → max-width constraint from globals.css
     // No padding-top override needed — HeroSection is
     // full-bleed, MobileNavbar not yet mounted
-    <main className="page-wrapper">
+    <main style={{ paddingTop: "var(--nav-height, 64px)" }}>
       <HeroSection />
       <ProgramTerbaruSection />
       <FeaturedPostCard />

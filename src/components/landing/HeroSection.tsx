@@ -8,6 +8,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import BackButton from "@/components/shared/BackButton";
+import HeroContent from "@/components/shared/HeroContent";
 import { ArrowLeft } from "lucide-react";
 
 export default function HeroSection() {
@@ -16,7 +18,7 @@ export default function HeroSection() {
       // min-h-svh → fills viewport height on mobile (svh accounts
       // for mobile browser chrome better than vh)
       // relative → stacking context for overlay + text layers
-      className="relative flex min-h-svh flex-col justify-end"
+      className="relative flex h-[40vh] flex-col justify-center"
     >
       {/* ── Background image ──────────────────────────────
                 fill → covers full section container
@@ -43,27 +45,11 @@ export default function HeroSection() {
                 pb-10 px-6 → breathing room from viewport edges
             ──────────────────────────────────────────────────── */}
       <div className="relative z-20 flex flex-col gap-4 px-6 pb-10">
-        <h1 className="font-title text-3xl font-bold text-brand-cream">
-          Tentang Kami
-        </h1>
-
-        <p className="font-sans text-sm leading-relaxed text-brand-cream/90">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
-
-        {/* ── BackButton ────────────────────────────────────
-                    Pill shape → rounded-full
-                    Inline link → navigates to /blog
-                    ArrowLeft icon from lucide-react
-                ─────────────────────────────────────────────── */}
-        <Link
-          href="/blog"
-          className="flex w-fit items-center gap-2 rounded-full bg-brand-cream px-5 py-2 font-sans text-sm font-medium text-brand-teal transition-opacity hover:opacity-80"
-        >
-          <ArrowLeft size={16} />
-          Baca Blog
-        </Link>
+        <HeroContent
+          title="Tentang Kami"
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        />
+        <BackButton href="/blog" label="Baca Blog" />
       </div>
     </section>
   );

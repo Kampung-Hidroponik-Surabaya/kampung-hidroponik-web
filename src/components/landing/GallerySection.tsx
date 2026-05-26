@@ -61,7 +61,7 @@ export default function GallerySection() {
                 aria-hidden → decorative only
             ─────────────────────────────────────────────── */}
       <img
-        src="/icons/blob-teal.svg"
+        src="/icons/liquid-bg-2-teal.svg"
         alt=""
         aria-hidden="true"
         className="absolute inset-0 z-0 size-full object-cover"

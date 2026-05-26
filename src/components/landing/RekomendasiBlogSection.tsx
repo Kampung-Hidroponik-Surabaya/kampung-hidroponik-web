@@ -162,7 +162,7 @@ export default function RekommendasiBlogSection() {
                 z-0 → sits below all content
             ─────────────────────────────────────────────── */}
       <img
-        src="/icons/blob-brown.svg"
+        src="/icons/liquid-bg-1-brown.svg"
         alt=""
         aria-hidden="true"
         className="absolute inset-0 z-0 size-full object-cover"
