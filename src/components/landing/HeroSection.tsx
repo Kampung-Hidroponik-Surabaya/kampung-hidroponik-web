@@ -47,7 +47,9 @@ export default function HeroSection() {
       <div className="relative z-20 flex flex-col gap-4 px-6 pb-10">
         <HeroContent
           title="Tentang Kami"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          description=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla interdum enim nisl. Mauris at commodo tortor. Aliquam ultrices risus et tellus semper varius. Nam sollicitudin at tellus non suscipit. Integer posuere ante nec enim fringilla, ut posuere libero blandit. Aliquam laoreet augue ut lorem luctus tempus. In scelerisque enim enim, in condimentum magna lacinia eu. Sed eget dolor at velit aliquam blandit.
+
+Donec sodales elit vel nisl eleifend bibendum. Duis ut laoreet nibh, vitae feugiat justo. Suspendisse a posuere velit. Ut non iaculis mauris, ac egestas tortor. Nulla tincidunt, odio ac efficitur pulvinar, ipsum sem elementum tortor, non pharetra dui."
         />
         <BackButton href="/blog" label="Baca Blog" />
       </div>
