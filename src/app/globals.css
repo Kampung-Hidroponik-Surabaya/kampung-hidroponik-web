@@ -107,6 +107,5 @@
 @layer components {
   .page-wrapper {
     @apply w-full max-w-[430px] mx-auto md:max-w-[1200px];
-    padding-top: var(--nav-height, 64px);
   }
 }
