@@ -157,7 +157,7 @@ export default function Navbar() {
                         onClick={() => setDrawerOpen((prev) => !prev)}
                         aria-label={drawerOpen ? "Tutup menu" : "Buka menu"}
                         aria-expanded={drawerOpen}
-                        className="flex items-center justify-center rounded-lg p-2 text-brand-cream transition-opacity hover:opacity-80 md:hidden"
+                        className="p-2 text-brand-cream transition-opacity hover:opacity-80 md:hidden"
                     >
                         <Menu size={24} />
                     </button>
@@ -182,19 +182,25 @@ export default function Navbar() {
                 {/* ── Drawer header: SVG logo + close button ────── */}
                 <div className="flex items-start justify-between px-8 pt-10">
                     {/* SVG logo → open state per spec */}
-                    <Image
-                        src="/icons/logo.svg"
-                        alt="Kampung Hidroponik Surabaya"
-                        width={160}
-                        height={100}
-                        className="object-contain w-auto h-auto"
-                    />
+                    <Link 
+                        href="/"
+                        aria-label="Beranda"
+                        className="inline-flex"
+                    >
+                        <Image
+                            src="/icons/logo.svg"
+                            alt="Kampung Hidroponik Surabaya"
+                            width={160}
+                            height={100}
+                            className="object-contain w-auto h-auto"
+                        />
+                    </Link>
 
                     {/* Close button → X icon top-right */}
                     <button
                         onClick={() => setDrawerOpen(false)}
                         aria-label="Tutup menu"
-                        className="p-2 text-brand-cream/80 transition-opacity hover:opacity-80"
+                        className="rounded-lg p-2 text-brand-cream/80 transition-all duration-200 hover:scale-110 hover:bg-brand-cream/10 active:scale-95 active:bg-brand-cream/20"
                     >
                         <X size={32} />
                     </button>
@@ -204,29 +210,61 @@ export default function Navbar() {
                     mt-12 → vertical breathing room below logo
                     Each link: icon left + label, large tap target
                 ─────────────────────────────────────────────── */}
-                <nav className="mt-12 flex flex-col gap-2 px-8">
-                    {NAV_LINKS.map(({ label, href, icon: Icon }) => (
-                        <Link
-                            key={href}
-                            href={href}
-                            className={[
-                                "flex items-center gap-6 rounded-xl px-4 py-4 font-title text-xl font-bold transition-opacity hover:opacity-80",
-                                pathname === href
-                                    ? "text-brand-cream"
-                                    : "text-brand-cream/80",
-                            ].join(" ")}
-                        >
-                            <Icon size={28} className="shrink-0" />
-                            {label}
-                        </Link>
-                    ))}
+                <nav className="mt-12 flex flex-col gap-2 px-6">
+                    {NAV_LINKS.map(({ label, href, icon: Icon }) => {
+                        const isActive = pathname === href;
+                        return (
+                            <Link
+                                key={href}
+                                href={href}
+                                className={[
+                                    // Base layout
+                                    "flex items-center gap-6 rounded-xl px-4 py-4",
+                                    "font-title text-xl font-bold",
+                                    // Transition: all props smoothly
+                                    "transition-all duration-200",
+                                    // Hover: bg fill + scale up
+                                    "hover:scale-[1.02] hover:bg-brand-cream/10",
+                                    // Press: scale down + darker bg
+                                    "active:scale-95 active:bg-brand-cream/20",
+                                    // Active page indicator
+                                    isActive
+                                        ? [
+                                            "border-l-4 border-brand-cream",
+                                            "bg-brand-cream/10",
+                                            "text-brand-cream",
+                                          ].join(" ")
+                                        : [
+                                            // Inactive: transparent left border
+                                            // (keeps layout stable — no shift on active)
+                                            "border-l-4 border-transparent",
+                                            "text-brand-cream/70",
+                                          ].join(" "),
+                                ].join(" ")}
+                            >
+                                <Icon
+                                    size={28}
+                                    className={[
+                                        "shrink-0 transition-transform duration-200",
+                                        // Active icon: full opacity
+                                        // Inactive icon: slightly muted
+                                        isActive
+                                            ? "opacity-100"
+                                            : "opacity-70",
+                                    ].join(" ")}
+                                />
+                                {label}
+                            </Link>
+                        );
+                    })}
                 </nav>
 
                 {/* ── Drawer footer: Instagram + copyright ──────────
                     mt-auto → pushed to bottom of drawer
                     border-t brand-cream/20 → subtle separator
                 ─────────────────────────────────────────────── */}
-                <div className="mt-auto flex flex-col items-center gap-3 border-t border-brand-cream/20 px-6 py-8">
+                <div className="mt-auto flex flex-col items-center gap-3 px-6 py-8">
+                    <div className="mx-6 w-auto self-stretch h-[2px] rounded-full bg-white/80" />
                     <a
                         href="https://instagram.com"
                         target="_blank"
