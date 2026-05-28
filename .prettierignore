@@ -1,0 +1,11 @@
+.next/
+out/
+build/
+node_modules/
+public/
+pnpm-lock.yaml
+sanity.config.ts
+sanity.cli.ts
+src/sanity/
+*.min.js
+.history/
