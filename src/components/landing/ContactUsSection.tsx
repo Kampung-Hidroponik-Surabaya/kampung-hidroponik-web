@@ -7,9 +7,9 @@
 // ─────────────────────────────────────────────────────────────
 
 "use client";
-
 import { useRef, useState } from "react";
 import { Phone } from "lucide-react";
+import DotPagination from "@/components/shared/DotPagination";
 
 // ── Placeholder data ──────────────────────────────────────────
 const PLACEHOLDER_CONTACTS = [
@@ -87,39 +87,6 @@ function ContactCard({
   );
 }
 
-// ── DotPagination ─────────────────────────────────────────────
-// Identical pattern to RekommendasiBlogSection — fully controlled
-// Extracted locally here; refactor to shared atomic post-scaffold
-// ─────────────────────────────────────────────────────────────
-function DotPagination({
-  count,
-  activeIndex,
-  onDotClick,
-}: {
-  count: number;
-  activeIndex: number;
-  onDotClick: (index: number) => void;
-}) {
-  return (
-    <div className="mt-4 flex items-center justify-center gap-2">
-      {Array.from({ length: count }).map((_, i) => (
-        <button
-          key={i}
-          aria-label={`Pergi ke item ${i + 1}`}
-          aria-current={i === activeIndex ? "true" : undefined}
-          onClick={() => onDotClick(i)}
-          className={[
-            "rounded-full transition-all duration-250",
-            i === activeIndex
-              ? "h-2.5 w-2.5 bg-brand-teal"
-              : "h-2 w-2 bg-brand-tan",
-          ].join(" ")}
-        />
-      ))}
-    </div>
-  );
-}
-
 // ── ContactUsSection ──────────────────────────────────────────
 // bg-brand-cream section wrapper + heading + carousel
 // ─────────────────────────────────────────────────────────────
@@ -155,9 +122,7 @@ export default function ContactUsSection() {
       {/* ── Section Heading ───────────────────────────────
                 text-brand-teal → GSM primary on cream bg
             ─────────────────────────────────────────────── */}
-      <h2 className="mb-6 text-center font-title text-2xl font-bold text-brand-teal">
-        Contact Us
-      </h2>
+      <h2 className="section-title text-brand-teal">Contact Us</h2>
 
       {/* ── Carousel scroll container ─────────────────────
                 px-4 on container → left edge padding
@@ -178,13 +143,13 @@ export default function ContactUsSection() {
       {/* ── DotPagination: hide if ≤2 contacts ───────────
                 All cards visible at once → no pagination needed
             ─────────────────────────────────────────────── */}
-      {PLACEHOLDER_CONTACTS.length > 2 && (
-        <DotPagination
-          count={PLACEHOLDER_CONTACTS.length}
-          activeIndex={activeIndex}
-          onDotClick={handleDotClick}
-        />
-      )}
+      <DotPagination
+        count={PLACEHOLDER_CONTACTS.length}
+        activeIndex={activeIndex}
+        onDotClick={handleDotClick}
+        activeColor="var(--color-teal)"
+        inactiveColor="var(--color-tan)"
+      />
     </section>
   );
 }

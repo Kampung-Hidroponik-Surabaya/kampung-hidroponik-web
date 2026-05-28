@@ -108,4 +108,9 @@
   .page-wrapper {
     @apply w-full max-w-[430px] mx-auto md:max-w-[1200px];
   }
+
+  .section-title {
+    @apply mb-6 text-left font-title text-3xl font-bold tracking-tight;
+    @apply md:text-4xl;
+  }
 }
