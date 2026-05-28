@@ -55,23 +55,21 @@ function GalleryImage({ alt, bgColor }: { alt: string; bgColor: string }) {
 // ─────────────────────────────────────────────────────────────
 export default function GallerySection() {
   return (
-    <section className="relative overflow-hidden px-4 py-10">
-      {/* ── SVG blob background ───────────────────────────
-                teal blob SVG → fills section behind content
-                aria-hidden → decorative only
-            ─────────────────────────────────────────────── */}
-      <img
-        src="/icons/liquid-bg-2-teal.svg"
-        alt=""
-        aria-hidden="true"
-        className="absolute inset-0 z-0 size-full object-cover"
-      />
-
-      {/* ── Content layer ─────────────────────────────────
-                relative z-10 → above SVG blob
-            ─────────────────────────────────────────────── */}
+    <section
+      className="relative py-14 md:py-20"
+      style={{
+        backgroundColor: "var(--brand-teal)", // Fallback for browsers that don't support CSS variables
+        backgroundImage: "url('/images/cut-liquid-bg-2-teal.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       <div className="relative z-10">
-        <h2 className="mb-6 text-center font-title text-2xl font-bold text-brand-cream">
+        <h2
+          className="section-title text-brand-cream"
+          style={{ textShadow: "0 1px 4px rgba(0,0,0,0.3)" }}
+        >
           Gallery
         </h2>
         <div className="grid grid-cols-2 gap-3">

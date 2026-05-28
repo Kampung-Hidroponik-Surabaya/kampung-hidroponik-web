@@ -7,10 +7,8 @@
 // ─────────────────────────────────────────────────────────────
 
 import Image from "next/image";
-import Link from "next/link";
 import BackButton from "@/components/shared/BackButton";
 import HeroContent from "@/components/shared/HeroContent";
-import { ArrowLeft } from "lucide-react";
 
 export default function HeroSection() {
   return (
