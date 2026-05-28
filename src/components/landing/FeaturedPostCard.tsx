@@ -68,7 +68,7 @@ export default function FeaturedPostCard() {
   const post = PLACEHOLDER_POST;
 
   return (
-    <section className="bg-brand-cream px-4 py-10">
+    <section className="bg-brand-cream px-4 py-8">
       {/* ── Section heading ───────────────────────────────
                 top-left aligned per mockup
                 font-title + text-brand-teal → GSM spec
