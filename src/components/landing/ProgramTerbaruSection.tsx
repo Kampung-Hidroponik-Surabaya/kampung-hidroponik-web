@@ -146,7 +146,7 @@ export default function ProgramTerbaruSection() {
   const [large, ...small] = PLACEHOLDER_PROGRAMS;
 
   return (
-    <section className="bg-brand-cream px-4 py-10">
+    <section className="bg-brand-cream px-4 py-8">
       <h2 className="section-title text-brand-teal">Program Terbaru</h2>
 
       {/* ── Mosaic Grid ───────────────────────────────────
