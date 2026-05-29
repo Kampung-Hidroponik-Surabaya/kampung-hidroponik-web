@@ -106,7 +106,7 @@
    ============================================================ */
 @layer components {
   .page-wrapper {
-    @apply w-full max-w-[430px] mx-auto md:max-w-[1200px];
+    @apply w-full px-[44px] mx-auto max-w-[1440px];
   }
 
   .section-title {
