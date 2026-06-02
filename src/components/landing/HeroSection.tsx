@@ -16,7 +16,7 @@ export default function HeroSection() {
       // min-h-svh → fills viewport height on mobile (svh accounts
       // for mobile browser chrome better than vh)
       // relative → stacking context for overlay + text layers
-      className="relative flex h-[40vh] flex-col justify-center"
+      className="relative flex h-[50vh] flex-col justify-center"
     >
       {/* ── Background image ──────────────────────────────
                 fill → covers full section container
@@ -42,7 +42,7 @@ export default function HeroSection() {
                 relative + z-20 → sits above both image (z-0) and overlay (z-10) 
                 pb-10 px-6 → breathing room from viewport edges
             ──────────────────────────────────────────────────── */}
-      <div className="relative z-20 flex flex-col gap-4 px-6 pb-10">
+      <div className="relative z-20 flex flex-col gap-4 px-6 ">
         <HeroContent
           title="Tentang Kami"
           description=" Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod  tempor incididunt ut labore et dolore magna aliqua. 
