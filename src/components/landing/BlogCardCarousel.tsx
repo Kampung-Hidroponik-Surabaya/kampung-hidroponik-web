@@ -105,7 +105,11 @@ export default function BlogCardCarousel({
         style={{ scrollbarWidth: "none" }}
       >
         {items.map((post) => (
-          <BlogCard key={post.slug} {...post} />
+          <BlogCard
+            key={post.slug}
+            {...post}
+            className="scroll-snap-align-start w-[80vw] flex-shrink-0"
+          />
         ))}
       </div>
 

@@ -57,7 +57,7 @@ export default function GallerySection() {
                 alt={photos[0].alt}
                 width={143}
                 height={103}
-                className="h-full w-full object-cover"
+                className="size-full object-cover"
               />
             </div>
             <div
@@ -69,7 +69,7 @@ export default function GallerySection() {
                 alt={photos[1].alt}
                 width={186}
                 height={141}
-                className="h-full w-full object-cover"
+                className="size-full object-cover"
               />
             </div>
           </div>
@@ -85,7 +85,7 @@ export default function GallerySection() {
                 alt={photos[2].alt}
                 width={143}
                 height={103}
-                className="h-full w-full object-cover"
+                className="size-full object-cover"
               />
             </div>
             <div
@@ -97,7 +97,7 @@ export default function GallerySection() {
                 alt={photos[3].alt}
                 width={78}
                 height={103}
-                className="h-full w-full object-cover"
+                className="size-full object-cover"
               />
             </div>
             <div
@@ -109,7 +109,7 @@ export default function GallerySection() {
                 alt={photos[4].alt}
                 width={143}
                 height={103}
-                className="h-full w-full object-cover"
+                className="size-full object-cover"
               />
             </div>
           </div>

@@ -75,7 +75,7 @@ export default function MemberCard({
           alt={member.name}
           width={157}
           height={196}
-          className="h-full w-full object-cover"
+          className="size-full object-cover"
         />
       </div>
 
@@ -98,7 +98,7 @@ export default function MemberCard({
             {member.name}
           </span>
           <p
-            className="font-sans font-normal text-justify"
+            className="text-justify font-sans font-normal"
             style={{ fontSize: "11px", color: "#43766C" }}
           >
             {member.description}

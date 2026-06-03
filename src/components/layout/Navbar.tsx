@@ -98,7 +98,7 @@ export default function Navbar() {
         ].join(" ")}
         style={{ height: "var(--nav-height, 64px)" }}
       >
-        <div className="flex h-full w-full items-center justify-between px-[44px]">
+        <div className="flex size-full items-center justify-between px-[44px]">
           {/* ── Logo (PNG) — closed state ──────────────
                         PNG logo → shown in navbar bar always
                         Hide text logo on mobile, show on desktop

@@ -26,6 +26,8 @@ export interface BlogCardProps {
   imageUrl: string | null;
   // bgColor: placeholder bg color when imageUrl is null
   bgColor?: string;
+  category?: string;
+  // variant: carousel (default) | grid
 }
 
 export default function BlogCard({
@@ -35,20 +37,17 @@ export default function BlogCard({
   date,
   imageUrl,
   bgColor = "bg-brand-tan",
-}: BlogCardProps) {
+  category,
+  className,
+}: BlogCardProps & { className?: string }) {
   return (
     <Link
       href={`/blog/${slug}`}
-      // group → drives group-hover on thumbnail zoom
-      // w-[75vw] max-w-[280px] → fixed card width inside carousel
-      // flex-shrink-0 → prevents compression in flex row
-      // scroll-snap-align-start → snaps to left edge
       className={[
-        "group flex w-[80vw] flex-shrink-0",
-        "scroll-snap-align-start flex-col overflow-hidden",
-        "rounded-2xl",
-        "transition-all duration-200",
-        "active:scale-[0.98]",
+        "group flex flex-col overflow-hidden rounded-2xl",
+        "transition-all duration-200 active:scale-[0.98]",
+        "hover:shadow-md",
+        className ?? "",
       ].join(" ")}
     >
       {/* ── Thumbnail ─────────────────────────────────────
@@ -81,14 +80,17 @@ export default function BlogCard({
                 flex-1 → fills remaining card height
                 justify-between → pushes meta to bottom
             ─────────────────────────────────────────────── */}
-      <div className="flex flex-1 flex-col justify-between gap-2 px-1 pb-0 pt-3">
-        <h3
-          className={[
-            "line-clamp-2 font-title text-base font-bold",
-            "text-brand-cream transition-colors duration-200",
-            "group-hover:text-brand-cream/80",
-          ].join(" ")}
-        >
+      <div className="flex flex-1 flex-col justify-between gap-2 px-1 pb-2 pt-3">
+        {/* ── Category badge ────────────────────────────
+            Only shown on grid variant
+            pill shape, brand-teal bg
+        ─────────────────────────────────────────────── */}
+        {category && (
+          <span className="w-fit rounded-full bg-brand-teal px-3 py-0.5 font-sans text-xs font-medium text-brand-cream">
+            {category}
+          </span>
+        )}
+        <h3 className="line-clamp-2 font-title text-base font-bold text-brand-cream transition-colors duration-200 group-hover:text-brand-cream/80">
           {title}
         </h3>
         <div className="flex items-center justify-between gap-2">

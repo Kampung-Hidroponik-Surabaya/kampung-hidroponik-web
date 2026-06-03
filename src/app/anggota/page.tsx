@@ -1,5 +1,5 @@
 // src/app/anggota/page.tsx
-import MemberCard, { MemberData } from "@/components/member/MemberCard";
+import MemberCard, { type MemberData } from "@/components/member/MemberCard";
 import FooterSection from "@/components/landing/FooterSection";
 
 export const metadata = { title: "Anggota" };
@@ -61,7 +61,7 @@ export default function MembersPage() {
   return (
     <>
       <main
-        className="min-h-screen mx-auto  px-[44px] pt-[76px] pb-[65px]"
+        className="mx-auto min-h-screen  px-[44px] pb-[65px] pt-[76px]"
         style={{ backgroundColor: "#F8FAE5" }}
       >
         {/* Section title */}

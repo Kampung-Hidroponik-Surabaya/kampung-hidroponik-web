@@ -26,7 +26,7 @@ export default function BackButton({
   return (
     <button
       onClick={handleClick}
-      className="flex items-center rounded-lg bg-[#76453B] text-white font-title font-normal transition-opacity hover:opacity-80"
+      className="flex items-center rounded-lg bg-[#76453B] font-title font-normal text-white transition-opacity hover:opacity-80"
       style={{
         width: "115px",
         height: "36px",

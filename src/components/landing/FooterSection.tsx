@@ -10,7 +10,7 @@ const navLinks = [
 
 export default function FooterSection() {
   return (
-    <footer className="bg-brand-teal text-white px-6 py-10 md:px-16 md:py-14">
+    <footer className="bg-brand-teal px-6 py-10 text-white md:px-16 md:py-14">
       {/* ── Desktop: 3 column grid | Mobile: single column ── */}
       <div className="flex flex-col items-center gap-6 md:flex-row md:items-start md:justify-between md:gap-8">
         {/* Col 1 — Logo + Collaboration */}
@@ -20,7 +20,7 @@ export default function FooterSection() {
             alt="Kampung Hidroponik Surabaya"
             width={234}
             height={187}
-            className="object-contain w-[234px] h-[187px]"
+            className="h-[187px] w-[234px] object-contain"
           />
           <div className="flex flex-col items-center gap-2 md:items-start">
             <span className="font-title text-sm font-normal text-white">
@@ -58,7 +58,7 @@ export default function FooterSection() {
             <Link
               key={link.href}
               href={link.href}
-              className="font-title text-2xl font-bold text-white hover:text-white/70 transition-colors"
+              className="font-title text-2xl font-bold text-white transition-colors hover:text-white/70"
             >
               {link.label}
             </Link>
@@ -77,7 +77,7 @@ export default function FooterSection() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram Kampung Hidroponik"
-              className="text-white hover:text-white/70 transition-colors"
+              className="text-white transition-colors hover:text-white/70"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
