@@ -6,7 +6,7 @@ export const metadata = { title: "Blog" };
 
 const blogs: BlogCardProps[] = [
   {
-    slug: "lorem-ipsum-1",
+    slug: "lorem-ipsum-1.",
     title: "Lorem ipsum dolor sit amet",
     author: "Lorem Ipsum",
     date: "Jan 3, 2026",
