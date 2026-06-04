@@ -1,21 +1,11 @@
 // src/components/shared/BackButton.tsx
-// ─────────────────────────────────────────────────────────────
-// BackButton — reusable pill-shaped navigation button
-// Behavior:
-//   href provided → router.push(href)
-//   href omitted → router.back()
-// Shared atomic → consumed by HeroSection + future pages
-// ─────────────────────────────────────────────────────────────
-
 "use client";
 
 import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 
 interface BackButtonProps {
-  // label: button text — defaults to "Baca Blog" per mockup
   label?: string;
-  // href: explicit target route — omit to use router.back()
   href?: string;
 }
 
@@ -36,12 +26,16 @@ export default function BackButton({
   return (
     <button
       onClick={handleClick}
-      // pill shape → rounded-full
-      // bg-brand-cream + text-brand-teal → inverted from hero bg
-      // w-fit → shrinks to content width
-      className="flex w-fit items-center gap-2 rounded-full bg-brand-cream px-5 py-2 font-sans text-sm font-medium text-brand-teal transition-opacity hover:opacity-80"
+      className="flex items-center rounded-lg bg-[#76453B] font-title font-normal text-white transition-opacity hover:opacity-80"
+      style={{
+        width: "115px",
+        height: "36px",
+        padding: "7px 8px 10px 9px",
+        gap: "12px",
+        fontSize: "14px",
+      }}
     >
-      <ArrowLeft size={16} />
+      <ArrowLeft size={16} className="shrink-0" />
       {label}
     </button>
   );

@@ -16,7 +16,7 @@ export default function HeroSection() {
       // min-h-svh → fills viewport height on mobile (svh accounts
       // for mobile browser chrome better than vh)
       // relative → stacking context for overlay + text layers
-      className="relative flex h-[40vh] flex-col justify-center"
+      className="relative flex h-[50vh] flex-col justify-center"
     >
       {/* ── Background image ──────────────────────────────
                 fill → covers full section container
@@ -42,12 +42,11 @@ export default function HeroSection() {
                 relative + z-20 → sits above both image (z-0) and overlay (z-10) 
                 pb-10 px-6 → breathing room from viewport edges
             ──────────────────────────────────────────────────── */}
-      <div className="relative z-20 flex flex-col gap-4 px-6 pb-10">
+      <div className="relative z-20 flex flex-col gap-4 px-6 ">
         <HeroContent
           title="Tentang Kami"
-          description=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla interdum enim nisl. Mauris at commodo tortor. Aliquam ultrices risus et tellus semper varius. Nam sollicitudin at tellus non suscipit. Integer posuere ante nec enim fringilla, ut posuere libero blandit. Aliquam laoreet augue ut lorem luctus tempus. In scelerisque enim enim, in condimentum magna lacinia eu. Sed eget dolor at velit aliquam blandit.
-
-Donec sodales elit vel nisl eleifend bibendum. Duis ut laoreet nibh, vitae feugiat justo. Suspendisse a posuere velit. Ut non iaculis mauris, ac egestas tortor. Nulla tincidunt, odio ac efficitur pulvinar, ipsum sem elementum tortor, non pharetra dui."
+          description=" Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod  tempor incididunt ut labore et dolore magna aliqua. 
+"
         />
         <BackButton href="/blog" label="Baca Blog" />
       </div>
