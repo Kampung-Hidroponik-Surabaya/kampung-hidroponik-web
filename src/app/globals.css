@@ -9,50 +9,50 @@
    e.g. bg-primary → hsl(var(--primary))
    ============================================================ */
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 20 14.3% 4.1%;
-    --card: 0 0% 100%;
-    --card-foreground: 20 14.3% 4.1%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 20 14.3% 4.1%;
-    --primary: 24 9.8% 10%;
-    --primary-foreground: 60 9.1% 97.8%;
-    --secondary: 60 4.8% 95.9%;
-    --secondary-foreground: 24 9.8% 10%;
-    --muted: 60 4.8% 95.9%;
-    --muted-foreground: 25 5.3% 44.7%;
-    --accent: 60 4.8% 95.9%;
-    --accent-foreground: 24 9.8% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 60 9.1% 97.8%;
-    --border: 20 5.9% 90%;
-    --input: 20 5.9% 90%;
-    --ring: 20 14.3% 4.1%;
-    --radius: 0.5rem;
-  }
+    :root {
+        --background: 0 0% 100%;
+        --foreground: 20 14.3% 4.1%;
+        --card: 0 0% 100%;
+        --card-foreground: 20 14.3% 4.1%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 20 14.3% 4.1%;
+        --primary: 24 9.8% 10%;
+        --primary-foreground: 60 9.1% 97.8%;
+        --secondary: 60 4.8% 95.9%;
+        --secondary-foreground: 24 9.8% 10%;
+        --muted: 60 4.8% 95.9%;
+        --muted-foreground: 25 5.3% 44.7%;
+        --accent: 60 4.8% 95.9%;
+        --accent-foreground: 24 9.8% 10%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 60 9.1% 97.8%;
+        --border: 20 5.9% 90%;
+        --input: 20 5.9% 90%;
+        --ring: 20 14.3% 4.1%;
+        --radius: 0.5rem;
+    }
 
-  .dark {
-    --background: 20 14.3% 4.1%;
-    --foreground: 60 9.1% 97.8%;
-    --card: 20 14.3% 4.1%;
-    --card-foreground: 60 9.1% 97.8%;
-    --popover: 20 14.3% 4.1%;
-    --popover-foreground: 60 9.1% 97.8%;
-    --primary: 60 9.1% 97.8%;
-    --primary-foreground: 24 9.8% 10%;
-    --secondary: 12 6.5% 15.1%;
-    --secondary-foreground: 60 9.1% 97.8%;
-    --muted: 12 6.5% 15.1%;
-    --muted-foreground: 24 5.4% 63.9%;
-    --accent: 12 6.5% 15.1%;
-    --accent-foreground: 60 9.1% 97.8%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 60 9.1% 97.8%;
-    --border: 12 6.5% 15.1%;
-    --input: 12 6.5% 15.1%;
-    --ring: 24 5.7% 82.9%;
-  }
+    .dark {
+        --background: 20 14.3% 4.1%;
+        --foreground: 60 9.1% 97.8%;
+        --card: 20 14.3% 4.1%;
+        --card-foreground: 60 9.1% 97.8%;
+        --popover: 20 14.3% 4.1%;
+        --popover-foreground: 60 9.1% 97.8%;
+        --primary: 60 9.1% 97.8%;
+        --primary-foreground: 24 9.8% 10%;
+        --secondary: 12 6.5% 15.1%;
+        --secondary-foreground: 60 9.1% 97.8%;
+        --muted: 12 6.5% 15.1%;
+        --muted-foreground: 24 5.4% 63.9%;
+        --accent: 12 6.5% 15.1%;
+        --accent-foreground: 60 9.1% 97.8%;
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 60 9.1% 97.8%;
+        --border: 12 6.5% 15.1%;
+        --input: 12 6.5% 15.1%;
+        --ring: 24 5.7% 82.9%;
+    }
 }
 
 /* ============================================================
@@ -61,56 +61,119 @@
    Do NOT use these inside shadcn components; use shadcn vars above
    ============================================================ */
 :root {
-  /* -- GSM color tokens -- */
-  --color-teal: #43766c;
-  --color-cream: #f8fae5;
-  --color-tan: #b19470;
-  --color-brown: #76453b;
+    /* -- GSM color tokens -- */
+    --color-teal: #43766c;
+    --color-cream: #f8fae5;
+    --color-tan: #b19470;
+    --color-brown: #76453b;
 
-  /* -- Layout -- */
-  --nav-height: 64px;
+    /* -- Layout -- */
+    --nav-height: 64px;
 }
 
 /* ============================================================
    BASE LAYER
    ============================================================ */
 @layer base {
-  html {
-    scroll-behavior: smooth;
-    -webkit-text-size-adjust: 100%;
-    text-size-adjust: 100%;
-  }
+    html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+    }
 
-  body {
-    @apply bg-brand-cream text-brand-brown font-sans;
-  }
+    body {
+        @apply bg-brand-cream text-brand-brown font-sans;
+    }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-title;
-  }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-title;
+    }
 
-  /* Focus ring — uses GSM teal, not shadcn ring */
-  :focus-visible {
-    outline: 2px solid var(--color-teal);
-    outline-offset: 3px;
-  }
+    /* Focus ring — uses GSM teal, not shadcn ring */
+    :focus-visible {
+        outline: 2px solid var(--color-teal);
+        outline-offset: 3px;
+    }
 }
 
 /* ============================================================
    COMPONENT LAYER
    ============================================================ */
 @layer components {
-  .page-wrapper {
-    @apply w-full px-[44px] mx-auto max-w-[1440px];
-  }
+    .page-wrapper {
+        @apply w-full px-[44px] mx-auto max-w-[1440px];
+    }
 
-  .section-title {
-    @apply mb-6 text-left font-title text-3xl font-bold tracking-tight;
-    @apply md:text-4xl;
-  }
+    .section-title {
+        @apply mb-6 text-left font-title text-3xl font-bold tracking-tight;
+        @apply md:text-4xl;
+    }
+}
+
+/* ============================================================
+   READABILITY HELPERS
+   - text-outline: cross-browser outline using multiple shadows
+   - text-outline-strong: thicker outline + glow
+   - text-stroke: WebKit/Chromium progressive enhancement
+   - pill: small rounded pill background for tags/labels
+   ============================================================ */
+@layer components {
+    .text-outline {
+        text-shadow:
+            -0.5px -0.5px 0 rgba(0, 0, 0, 0.9),
+            0.5px -0.5px 0 rgba(0, 0, 0, 0.9),
+            -0.5px 0.5px 0 rgba(0, 0, 0, 0.9),
+            0.5px 0.5px 0 rgba(0, 0, 0, 0.9);
+    }
+
+    .text-outline-strong {
+        text-shadow:
+            -2px -2px 0 #000,
+            2px -2px 0 #000,
+            -2px 2px 0 #000,
+            2px 2px 0 #000,
+            0 0 6px rgba(0, 0, 0, 0.45);
+    }
+
+    .text-stroke {
+        -webkit-text-stroke: 0.6px #000; /* thinner stroke */
+        -webkit-text-fill-color: currentColor; /* preserve text color */
+    }
+
+    .icon-outline {
+        filter: drop-shadow(-0.5px -0.5px 0 rgba(0, 0, 0, 0.9))
+            drop-shadow(0.5px -0.5px 0 rgba(0, 0, 0, 0.9))
+            drop-shadow(-0.5px 0.5px 0 rgba(0, 0, 0, 0.9))
+            drop-shadow(0.5px 0.5px 0 rgba(0, 0, 0, 0.9));
+    }
+
+    .text-outline-thin {
+        text-shadow:
+            -0.35px -0.35px 0 rgba(0, 0, 0, 0.85),
+            0.35px -0.35px 0 rgba(0, 0, 0, 0.85),
+            -0.35px 0.35px 0 rgba(0, 0, 0, 0.85),
+            0.35px 0.35px 0 rgba(0, 0, 0, 0.85);
+    }
+
+    .icon-outline-thin {
+        filter: drop-shadow(-0.35px -0.35px 0 rgba(0, 0, 0, 0.85))
+            drop-shadow(0.35px -0.35px 0 rgba(0, 0, 0, 0.85))
+            drop-shadow(-0.35px 0.35px 0 rgba(0, 0, 0, 0.85))
+            drop-shadow(0.35px 0.35px 0 rgba(0, 0, 0, 0.85));
+    }
+
+    .pill {
+        display: inline-block;
+        padding: 0.125rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        background: var(--color-teal);
+        color: var(--color-cream);
+    }
 }

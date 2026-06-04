@@ -1,21 +1,34 @@
 // src/components/blog/BlogPageClient.tsx
 // ─────────────────────────────────────────────────────────────
 // BlogPageClient — owns all filter state
-// Renders search/filter controls + grid as separate sections
-// Lifted state → controls in cream section, grid in teal section
+// Renders BlogSearchSection + BlogListSection
+// No JSX sections here — purely state + derived data + passdown
 // ─────────────────────────────────────────────────────────────
 
 "use client";
 
 import { useMemo, useState } from "react";
-import BlogCard from "@/components/shared/BlogCard";
-import SearchBar from "@/components/blog/SearchBar";
-import FilterControls, {
-    type Category,
-    type SortOption,
-} from "@/components/blog/FilterControls";
+import BlogSearchSection from "@/components/blog/BlogSearchSection";
+import BlogListSection from "@/components/blog/BlogListSection";
+import { type Category, type SortOption } from "@/components/blog/FilterControls";
+import { type BlogCardProps } from "@/components/shared/BlogCard";
+
+// ── BlogPostItem type ─────────────────────────────────────────
+// Exported → consumed by BlogListSection
+// Extends BlogCardProps with category + rawDate
+export interface BlogPostItem extends BlogCardProps {
+    category: Category;
+    // rawDate: ISO 8601 string → used for date sort comparison
+    // e.g. "2026-01-03" — lexicographically sortable
+    rawDate: string;
+}
 
 // ── Placeholder data ──────────────────────────────────────────
+// Replace with Sanity fetch in blog/page.tsx:
+// *[_type == "post"] | order(publishedAt desc) {
+//   _id, title, slug, author->{name},
+//   publishedAt, mainImage, category
+// }
 const PLACEHOLDER_POSTS: BlogPostItem[] = [
     {
         slug: "lorem-ipsum-1",
@@ -80,6 +93,8 @@ const PLACEHOLDER_POSTS: BlogPostItem[] = [
 ];
 
 interface BlogPageClientProps {
+    // posts: passed from blog/page.tsx when Sanity wired
+    // Falls back to PLACEHOLDER_POSTS if not provided
     posts?: BlogPostItem[];
 }
 
@@ -90,8 +105,12 @@ export default function BlogPageClient({
     const [query, setQuery] = useState("");
     const [activeCategory, setActiveCategory] = useState<Category>("Semua");
     const [sortOrder, setSortOrder] = useState<SortOption>("newest");
+    const [page, setPage] = useState(0);
+    const POSTS_PER_PAGE = 10;
 
     // ── Derived: filtered + sorted posts ─────────────────────
+    // Recomputes only when posts, query, activeCategory,
+    // or sortOrder changes
     const filtered = useMemo(() => {
         const q = query.toLowerCase().trim();
         return posts
@@ -114,84 +133,67 @@ export default function BlogPageClient({
             );
     }, [posts, query, activeCategory, sortOrder]);
 
+    // paginated: slice of filtered posts for current page
+    const paginated = useMemo(
+        () => filtered.slice(0, (page + 1) * POSTS_PER_PAGE),
+        [filtered, page]
+    );
+
+    // hasMore: true if more posts exist beyond current page
+    const hasMore = paginated.length < filtered.length;
+
+    // ── Reset handler ─────────────────────────────────────────
+    // Passed to BlogListSection empty state reset button
+    function handleReset() {
+        setQuery("");
+        setActiveCategory("Semua");
+        setSortOrder("newest");
+    }
+    // Reset page when any filter changes
+    // Mechanism: derived via useEffect on filter deps
+    // Prevents showing page 3 of a newly filtered result set
+    function handleQueryChange(value: string) {
+        setQuery(value);
+        setPage(0);
+    }
+    function handleCategoryChange(category: Category) {
+        setActiveCategory(category);
+        setPage(0);
+    }
+    function handleSortChange(sort: SortOption) {
+        setSortOrder(sort);
+        setPage(0);
+    }
+    function handleLoadMore() {
+        setPage((prev) => prev + 1);
+    }
+
     return (
         <>
-            {/* ══ Part 1: Search + Filter (cream bg) ═══════════ */}
-            <section className="bg-brand-cream px-4 py-8">
-                <div className="mx-auto max-w-[430px] md:max-w-[1200px]">
-                    <h1 className="section-title mb-6 text-brand-teal">
-                        Blog
-                    </h1>
-                    <div className="flex flex-col gap-4">
-                        <SearchBar value={query} onChange={setQuery} />
-                        <FilterControls
-                            activeCategory={activeCategory}
-                            onCategoryChange={setActiveCategory}
-                            sortOrder={sortOrder}
-                            onSortChange={setSortOrder}
-                        />
-                    </div>
-                </div>
-            </section>
+            {/* ── BlogSearchSection ─────────────────────────────
+                cream bg — heading + search + filter
+                Receives controlled state + handlers
+            ─────────────────────────────────────────────── */}
+            <BlogSearchSection
+                query={query}
+                onQueryChange={setQuery}
+                activeCategory={activeCategory}
+                onCategoryChange={setActiveCategory}
+                sortOrder={sortOrder}
+                onSortChange={setSortOrder}
+            />
 
-            {/* ══ Part 2: Blog grid (teal blob bg) ════════════ */}
-            <section
-                className="relative px-4 pb-16 pt-8"
-                style={{
-                    backgroundColor: "#43766c",
-                    backgroundImage:
-                        "url('/images/big-cut-liquid-bg-2-teal.png')",
-                    backgroundSize: "100% 100%",
-                    minHeight: "calc(100vw * 3.171)",
-                }}
-            >
-                <div className="mx-auto max-w-[430px] md:max-w-[1200px]">
-                    {/* ── Results count ─────────────────────── */}
-                    <p className="mb-4 font-sans text-sm text-brand-cream/70">
-                        {filtered.length === 0
-                            ? "Tidak ada artikel ditemukan"
-                            : `${filtered.length} artikel ditemukan`}
-                    </p>
-
-                    {/* ── Grid or empty state ───────────────── */}
-                    {filtered.length > 0 ? (
-                        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                            {filtered.map((post) => (
-                                <BlogCard
-                                    key={post.slug}
-                                    {...post}
-                                    className="w-full"
-                                />
-                            ))}
-                        </div>
-                    ) : (
-                        <div className="flex flex-col items-center gap-3 py-16">
-                            <span className="font-title text-4xl">🌱</span>
-                            <p className="font-title text-lg font-bold text-brand-cream">
-                                Belum ada artikel
-                            </p>
-                            <p className="font-sans text-sm text-brand-cream/70">
-                                Coba ubah filter atau kata kunci pencarian
-                            </p>
-                            <button
-                                onClick={() => {
-                                    setQuery("");
-                                    setActiveCategory("Semua");
-                                    setSortOrder("newest");
-                                }}
-                                className={[
-                                    "mt-2 rounded-full border border-brand-cream",
-                                    "px-6 py-2 font-sans text-sm font-medium text-brand-cream",
-                                    "transition-all duration-200 hover:bg-brand-cream hover:text-brand-teal",
-                                    "active:scale-95",
-                                ].join(" ")}
-                            >
-                                Reset Filter
-                            </button>
-                        </div>
-                    )}
-                </div>
-            </section>
+            {/* ── BlogListSection ───────────────────────────────
+                teal blob bg — results count + grid + empty state
+                Receives filtered posts + reset handler
+            ─────────────────────────────────────────────── */}
+            <BlogListSection
+                posts={paginated}
+                totalCount={filtered.length}
+                hasMore={hasMore}
+                onLoadMore={handleLoadMore}
+                onReset={handleReset}
+            />
         </>
     );
 }
