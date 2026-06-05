@@ -27,12 +27,12 @@ export const SORT_OPTIONS = [
 export type SortOption = (typeof SORT_OPTIONS)[number]["value"];
 
 interface FilterControlsProps {
-  // Category filter
   activeCategory: Category;
   onCategoryChange: (category: Category) => void;
-  // Date sort
   sortOrder: SortOption;
   onSortChange: (sort: SortOption) => void;
+  // dynamic list from Sanity — replaces hardcoded CATEGORIES const
+  categories: string[];
 }
 
 export default function FilterControls({
@@ -40,6 +40,7 @@ export default function FilterControls({
   onCategoryChange,
   sortOrder,
   onSortChange,
+  categories,
 }: FilterControlsProps) {
   return (
     <div className="flex flex-col gap-4">
@@ -57,7 +58,7 @@ export default function FilterControls({
         role="tablist"
         aria-label="Filter kategori"
       >
-        {CATEGORIES.map((category) => {
+      {['Semua', ...categories].map((category) => {
           const isActive = activeCategory === category;
           return (
             <button

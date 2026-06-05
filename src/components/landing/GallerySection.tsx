@@ -55,25 +55,33 @@ export default function GallerySection({
               className="shrink-0 overflow-hidden"
               style={{ width: "143px", height: "141px", borderRadius: "4px" }}
             >
-              <Image
-                src={photos[0].src}
-                alt={photos[0].alt}
-                width={143}
-                height={103}
-                className="size-full object-cover"
-              />
+              {photos[0] ? (
+                <Image
+                  src={photos[0].src}
+                  alt={photos[0].alt}
+                  width={143}
+                  height={103}
+                  className="size-full object-cover"
+                />
+              ) : (
+                <div className="size-full bg-brand-tan/30" />
+              )}
             </div>
             <div
               className="flex-1 overflow-hidden"
               style={{ height: "141px", borderRadius: "4px" }}
             >
-              <Image
-                src={photos[1].src}
-                alt={photos[1].alt}
-                width={186}
-                height={141}
-                className="size-full object-cover"
-              />
+              {photos[1] ? (
+                <Image
+                  src={photos[1].src}
+                  alt={photos[1].alt}
+                  width={186}
+                  height={141}
+                  className="size-full object-cover"
+                />
+              ) : (
+                <div className="size-full bg-brand-tan/30" />
+              )}
             </div>
           </div>
 
@@ -83,37 +91,49 @@ export default function GallerySection({
               className="shrink-0 overflow-hidden"
               style={{ width: "143px", height: "103px", borderRadius: "4px" }}
             >
-              <Image
-                src={photos[2].src}
-                alt={photos[2].alt}
-                width={143}
-                height={103}
-                className="size-full object-cover"
-              />
+              {photos[2] ? (
+                <Image
+                  src={photos[2].src}
+                  alt={photos[2].alt}
+                  width={143}
+                  height={103}
+                  className="size-full object-cover"
+                />
+              ) : (
+                <div className="size-full bg-brand-tan/30" />
+              )}
             </div>
             <div
               className="shrink-0 overflow-hidden"
               style={{ width: "78px", height: "103px", borderRadius: "4px" }}
             >
-              <Image
-                src={photos[3].src}
-                alt={photos[3].alt}
-                width={78}
-                height={103}
-                className="size-full object-cover"
-              />
+              {photos[3] ? (
+                <Image
+                  src={photos[3].src}
+                  alt={photos[3].alt}
+                  width={78}
+                  height={103}
+                  className="size-full object-cover"
+                />
+              ) : (
+                <div className="size-full bg-brand-tan/30" />
+              )}
             </div>
             <div
               className="flex-1 overflow-hidden"
               style={{ height: "103px", borderRadius: "4px" }}
             >
-              <Image
-                src={photos[4].src}
-                alt={photos[4].alt}
-                width={143}
-                height={103}
-                className="size-full object-cover"
-              />
+              {photos[4] ? (
+                <Image
+                  src={photos[4].src}
+                  alt={photos[4].alt}
+                  width={143}
+                  height={103}
+                  className="size-full object-cover"
+                />
+              ) : (
+                <div className="size-full bg-brand-tan/30" />
+              )}
             </div>
           </div>
         </div>

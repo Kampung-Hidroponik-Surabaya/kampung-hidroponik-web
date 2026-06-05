@@ -28,7 +28,7 @@ export type Post = {
   title: string
   slug: {current: string}
   author?: Pick<Author, '_id' | 'name' | 'photo'>
-  category?: Pick<Category, '_id' | 'title'>
+  categories?: Pick<Category, '_id' | 'title'>[]  // array, renamed
   tags?: string[]
   mainImage?: SanityImageAsset
   excerpt?: string
@@ -63,6 +63,7 @@ export type Program = {
   image?: SanityImageAsset
   date: string
   active: boolean
+  relatedPost?: {slug: string}  // only slug needed for href construction
 }
 
 export type SiteSettings = {

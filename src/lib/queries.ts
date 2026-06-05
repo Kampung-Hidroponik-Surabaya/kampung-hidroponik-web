@@ -30,7 +30,7 @@ const POST_CARD_PROJECTION = `
   featured,
   mainImage { asset, alt, hotspot },
   "author": author-> { _id, name, photo { asset, hotspot } },
-  "category": category-> { _id, title }
+  "categories": categories[]-> { _id, title }
 `
 
 // ── All published posts — blog index page ─────────────────────────────────
@@ -173,7 +173,8 @@ const ALL_PROGRAMS_QUERY = `
     description,
     image { asset, hotspot, alt },
     date,
-    active
+    active,
+    "relatedPost": relatedPost-> { "slug": slug.current }
   }
 `
 
@@ -189,7 +190,8 @@ const ACTIVE_PROGRAMS_QUERY = `
     description,
     image { asset, hotspot, alt },
     date,
-    active
+    active,
+    "relatedPost": relatedPost-> { "slug": slug.current }
   }
 `
 

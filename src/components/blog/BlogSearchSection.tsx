@@ -18,6 +18,7 @@ interface BlogSearchSectionProps {
     onCategoryChange: (category: Category) => void;
     sortOrder: SortOption;
     onSortChange: (sort: SortOption) => void;
+    categories: string[];
 }
 
 export default function BlogSearchSection({
@@ -27,6 +28,7 @@ export default function BlogSearchSection({
     onCategoryChange,
     sortOrder,
     onSortChange,
+    categories,
 }: BlogSearchSectionProps) {
     return (
         <section className="bg-brand-cream px-4 py-8">
@@ -56,6 +58,7 @@ export default function BlogSearchSection({
                         onCategoryChange={onCategoryChange}
                         sortOrder={sortOrder}
                         onSortChange={onSortChange}
+                        categories={categories}
                     />
                 </div>
             </div>

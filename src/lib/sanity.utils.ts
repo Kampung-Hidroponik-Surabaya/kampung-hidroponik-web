@@ -25,6 +25,6 @@ export function postToBlogCardProps(post: Post, index: number = 0): BlogCardProp
       ? urlFor(post.mainImage).width(600).url()
       : null,
     bgColor: BG_COLORS[index % BG_COLORS.length],
-    category: post.category?.title,
+    category: post.categories?.[0]?.title,
   }
 }

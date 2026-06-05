@@ -48,7 +48,9 @@ export default function MemberCard({
     member,
     reverse = false,
 }: MemberCardProps) {
-    const photoUrl = urlFor(member.photo).width(314).height(392).url();
+    const photoUrl = member.photo?.asset
+      ? urlFor(member.photo).width(314).height(392).url()
+      : null;
     const label = member.jabatan;
     const name = member.name;
     const desc = member.description ?? "";
@@ -69,13 +71,17 @@ export default function MemberCard({
                     border: "4px solid #43766C",
                 }}
             >
-                <Image
-                    src={photoUrl}
-                    alt={label}
-                    width={157}
-                    height={196}
-                    className="size-full object-cover"
-                />
+                {photoUrl ? (
+                  <Image
+                      src={photoUrl}
+                      alt={label}
+                      width={157}
+                      height={196}
+                      className="size-full object-cover"
+                  />
+                ) : (
+                  <div className="size-full bg-brand-tan/30" />
+                )}
             </div>
 
             {/* Text — same height as card via justify-between */}

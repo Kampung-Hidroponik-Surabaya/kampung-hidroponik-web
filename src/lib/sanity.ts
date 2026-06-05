@@ -1,6 +1,6 @@
 import {createClient} from '@sanity/client'
 import imageUrlBuilder from '@sanity/image-url'
-import type {SanityImageSource} from '@sanity/image-url/lib/types/types'
+import type {SanityImageSource} from '@sanity/image-url'
 
 // ── Sanity client instance ─────────────────────────────────────────────────
 // Single export reused across all server components and GROQ queries

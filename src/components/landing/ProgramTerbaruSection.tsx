@@ -132,24 +132,18 @@ export default function ProgramTerbaruSection({
     label: program.title,
     imageUrl: program.image?.asset ? urlFor(program.image).width(600).url() : null,
     bgColor: BG_COLORS[index % BG_COLORS.length],
-    href: `/blog?program=${program._id}`, // Example link to program-specific blog listing
+    href: program.relatedPost?.slug ? `/blog/${program.relatedPost.slug}` : '/blog',
   }));
 
   const [large, ...small] = cards;
+
+  // guard: don't render grid if no programs published in Studio
+  if (!large) return null;
 
   return (
     <section className="bg-brand-cream px-4 py-8">
       <h2 className="section-title text-brand-teal">Program Terbaru</h2>
 
-      {/* ── Mosaic Grid ───────────────────────────────────
-                grid-cols-[3fr_2fr] → left 60%, right 40%
-                grid-rows-2 → 2 equal rows for right col
-                gap-1.5 → tight gutter matching mockup
-                h-[320px] → fixed total grid height
-                  → both cols fill this height
-                  → resizes correctly at all screen widths
-                  → gap stays tight regardless of screen size
-            ─────────────────────────────────────────────── */}
       <div className="grid h-[320px] grid-cols-[3fr_2fr] grid-rows-2 gap-1.5">
         <ProgramCard
           {...large}
@@ -157,13 +151,18 @@ export default function ProgramTerbaruSection({
           textSize="lg"
           className="row-span-2"
         />
-        <ProgramCard {...small[0]} labelPosition="top-left" textSize="sm" />
-        <ProgramCard
-          {...small[1]}
-          labelPosition="bottom-left"
-          textSize="base"
-        />
+        {/* guard: render small slots only if data exists */}
+        {small[0] && (
+          <ProgramCard {...small[0]} labelPosition="top-left" textSize="sm" />
+        )}
+        {small[1] && (
+          <ProgramCard
+            {...small[1]}
+            labelPosition="bottom-left"
+            textSize="base"
+          />
+        )}
       </div>
     </section>
-  );
+  )
 }
