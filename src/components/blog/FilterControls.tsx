@@ -16,7 +16,7 @@ export const CATEGORIES = [
   "Kegiatan",
 ] as const;
 
-export type Category = (typeof CATEGORIES)[number];
+export type Category = string
 
 // ── Sort options ──────────────────────────────────────────────
 export const SORT_OPTIONS = [

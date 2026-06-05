@@ -1,16 +1,19 @@
 // src/components/landing/GallerySection.tsx
 import Image from "next/image";
+import { urlFor } from "@/lib/sanity";
+import type { GalleryImage } from "@/lib/sanity.types";
 
-// Placeholder photos — nanti diganti fetch dari Sanity
-const photos = [
-  { id: 1, src: "/images/kebun.png", alt: "Foto kebun 1" },
-  { id: 2, src: "/images/kebun.png", alt: "Foto kebun 2" },
-  { id: 3, src: "/images/kebun.png", alt: "Foto kebun 3" },
-  { id: 4, src: "/images/kebun.png", alt: "Foto kebun 4" },
-  { id: 5, src: "/images/kebun.png", alt: "Foto kebun 5" },
-];
+// Fallback: empty array -> renders nothing (section still visible vva bg)
 
-export default function GallerySection() {
+export default function GallerySection({
+  images,
+}: {
+  images: GalleryImage[]; // passed from parent when Sanity wired
+}) {
+  const photos = images.slice(0, 5).map((img) => ({
+    src: urlFor(img.image).width(400).url(),
+    alt: img.image.alt ?? img.title,
+  }))
   return (
     <section
       className="relative"

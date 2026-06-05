@@ -1,35 +1,49 @@
-// src/app/page.tsx
-// ─────────────────────────────────────────────────────────────
-// Landing Page — assembles all section components in order
-// Server Component (no 'use client') — client boundaries are
-// isolated to individual interactive sections
-// ─────────────────────────────────────────────────────────────
+import {
+  getFeaturedPosts,
+  getLatestPosts,
+  getActivePrograms,
+  getAllGalleryImages,
+  getSiteSettings,
+  getAllContacts,
+} from '@/lib/queries'
+import {postToBlogCardProps} from '@/lib/sanity.utils'
+import HeroSection from '@/components/landing/HeroSection'
+import RekomendasiBlogSection from '@/components/landing/RekomendasiBlogSection'
+import BlogCardCarousel from '@/components/landing/BlogCardCarousel'
+import ProgramTerbaruSection from '@/components/landing/ProgramTerbaruSection'
+import GallerySection from '@/components/landing/GallerySection'
+import ContactUsSection from '@/components/landing/ContactUsSection'
+import FooterSection from '@/components/landing/FooterSection'
 
-import HeroSection from "@/components/landing/HeroSection";
-import ProgramTerbaruSection from "@/components/landing/ProgramTerbaruSection";
-import FeaturedPostCard from "@/components/landing/FeaturedPostCard";
-import RekommendasiBlogSection from "@/components/landing/RekomendasiBlogSection";
-import ContactUsSection from "@/components/landing/ContactUsSection";
-import GallerySection from "@/components/landing/GallerySection";
-import FooterSection from "@/components/landing/FooterSection";
+export default async function HomePage() {
+  const [
+    featuredPosts,
+    latestPosts,
+    activePrograms,
+    galleryImages,
+    siteSettings,
+    contacts,
+  ] = await Promise.all([
+    getFeaturedPosts(),
+    getLatestPosts(6),
+    getActivePrograms(),
+    getAllGalleryImages(),
+    getSiteSettings(),
+    getAllContacts(),
+  ])
 
-export const metadata = { title: "Beranda" };
+  const featuredItems = featuredPosts.map((p, i) => postToBlogCardProps(p, i))
+  const latestItems   = latestPosts.map((p, i) => postToBlogCardProps(p, i))
 
-export default function HomePage() {
   return (
-    // page-wrapper → max-width constraint from globals.css
-    // No padding-top override needed — HeroSection is
-    // full-bleed, MobileNavbar not yet mounted
-    <main style={{ paddingTop: "var(--nav-height, 64px)" }}>
-      <HeroSection />
-      <ProgramTerbaruSection />
-      <FeaturedPostCard />
-      <RekommendasiBlogSection />
-      <ContactUsSection />
-      <GallerySection />
-      <div className="bg-brand-cream py-6" />{" "}
-      {/* Spacerto prevent Footer overlap on mobile */}
-      <FooterSection />
+    <main>
+      <HeroSection siteSettings={siteSettings} />
+      <RekomendasiBlogSection items={featuredItems} />
+      <BlogCardCarousel items={latestItems} />
+      <ProgramTerbaruSection programs={activePrograms} />
+      <GallerySection images={galleryImages} />
+      <ContactUsSection contacts={contacts} />
+      <FooterSection siteSettings={siteSettings} />
     </main>
-  );
+  )
 }

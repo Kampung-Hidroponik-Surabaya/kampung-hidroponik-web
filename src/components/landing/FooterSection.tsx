@@ -1,6 +1,7 @@
 // src/components/landing/FooterSection.tsx
 import Image from "next/image";
 import Link from "next/link";
+import type { SiteSettings } from "@/lib/sanity.types";
 
 const navLinks = [
   { href: "/", label: "Beranda" },
@@ -8,7 +9,11 @@ const navLinks = [
   { href: "/anggota", label: "Member" },
 ];
 
-export default function FooterSection() {
+export default function FooterSection({
+  siteSettings, 
+}: {
+  siteSettings: SiteSettings | null; // passed from parent when Sanity wired
+}) {
   return (
     <footer className="bg-brand-teal px-6 py-10 text-white md:px-16 md:py-14">
       {/* ── Desktop: 3 column grid | Mobile: single column ── */}
@@ -73,7 +78,11 @@ export default function FooterSection() {
               Hubungi Kami
             </span>
             <a
-              href="https://instagram.com"
+              href={
+                siteSettings?.instagram
+                  ? `https://instagram.com/${siteSettings.instagram}`
+                  : "https://instagram.com"
+              }
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram Kampung Hidroponik"
@@ -102,7 +111,7 @@ export default function FooterSection() {
             <div>
               <p className="font-title text-sm font-bold text-white">Email:</p>
               <p className="font-title text-sm font-normal text-white">
-                @loremipsum@gmail.com
+                {siteSettings?.email ?? '@loremipsum@gmail.com'}
               </p>
             </div>
             <div>
@@ -110,7 +119,7 @@ export default function FooterSection() {
                 No. Telp:
               </p>
               <p className="font-title text-sm font-normal text-white">
-                +(67)999-999
+                {siteSettings?.phone ?? '(67) 999-999'}
               </p>
             </div>
           </div>
@@ -126,8 +135,7 @@ export default function FooterSection() {
           © Kampung Hidroponik Surabaya
         </span>
         <span className="font-sans text-sm font-normal text-brand-cream">
-          Jl. Medayu Utara XIII No.1, Medokan Ayu, Kec. Rungkut, Surabaya, Jawa
-          Timur 60295
+          {siteSettings?.address ?? 'Jl. Medayu Utara XIII No.1, Medokan Ayu, Kec. Rungkut, Surabaya, Jawa Timur 60295'}
         </span>
       </div>
     </footer>

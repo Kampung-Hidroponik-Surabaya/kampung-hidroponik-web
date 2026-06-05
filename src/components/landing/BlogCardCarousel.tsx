@@ -12,46 +12,16 @@ import { useRef, useState } from "react";
 import BlogCard, { type BlogCardProps } from "@/components/shared/BlogCard";
 import DotPagination from "@/components/shared/DotPagination";
 
-// ── Placeholder data ──────────────────────────────────────────
-// Replace with Sanity fetch in RekommendasiBlogSection later:
-// *[_type == "post"] | order(_createdAt desc) [0..3] {
-//   _id, title, slug, author->{name}, publishedAt, mainImage
-// }
-const PLACEHOLDER_POSTS: BlogCardProps[] = [
-  {
-    slug: "post-1",
-    title: "Lorem ipsum dolor sit amet consectetur",
-    author: "Admin",
-    date: "3 Jan 2026",
-    imageUrl: null,
-    bgColor: "bg-brand-teal",
-  },
-  {
-    slug: "post-2",
-    title: "Lorem ipsum dolor sit amet consectetur",
-    author: "Admin",
-    date: "5 Jan 2026",
-    imageUrl: null,
-    bgColor: "bg-brand-tan",
-  },
-  {
-    slug: "post-3",
-    title: "Lorem ipsum dolor sit amet consectetur",
-    author: "Admin",
-    date: "7 Jan 2026",
-    imageUrl: null,
-    bgColor: "bg-brand-brown",
-  },
-];
-
+// Parent: RekomendasiBlogSection (landing) or blog/page.tsx
+  
 interface BlogCardCarouselProps {
   // items: array of BlogCardProps — passed from parent section
   // when Sanity fetch is wired; falls back to PLACEHOLDER_POSTS
-  items?: BlogCardProps[];
+  items: BlogCardProps[];
 }
 
 export default function BlogCardCarousel({
-  items = PLACEHOLDER_POSTS,
+  items,
 }: BlogCardCarouselProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);

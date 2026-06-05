@@ -9,8 +9,13 @@
 import Image from "next/image";
 import BackButton from "@/components/shared/BackButton";
 import HeroContent from "@/components/shared/HeroContent";
+import type { SiteSettings } from "@/lib/sanity.types";
 
-export default function HeroSection() {
+export default function HeroSection({
+  siteSettings,
+}: {
+  siteSettings: SiteSettings | null; // passed from parent when Sanity wired
+}) {
   return (
     <section
       // min-h-svh → fills viewport height on mobile (svh accounts
@@ -44,9 +49,8 @@ export default function HeroSection() {
             ──────────────────────────────────────────────────── */}
       <div className="relative z-20 flex flex-col gap-4 px-6 ">
         <HeroContent
-          title="Tentang Kami"
-          description=" Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod  tempor incididunt ut labore et dolore magna aliqua. 
-"
+          title={siteSettings?.siteTitle ?? "Tentang Kami"}
+          description={siteSettings?.description ?? " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod  tempor incididunt ut labore et dolore magna aliqua. "}
         />
         <BackButton href="/blog" label="Baca Blog" />
       </div>
