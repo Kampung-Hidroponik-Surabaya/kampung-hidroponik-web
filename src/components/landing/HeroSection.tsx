@@ -21,7 +21,7 @@ export default function HeroSection({
       // min-h-svh → fills viewport height on mobile (svh accounts
       // for mobile browser chrome better than vh)
       // relative → stacking context for overlay + text layers
-      className="relative flex h-[50vh] flex-col justify-center"
+      className="relative flex h-full min-h-[500px] md:min-h-[600px] lg:min-h-[750px] flex-col justify-end"
     >
       {/* ── Background image ──────────────────────────────
                 fill → covers full section container
@@ -33,7 +33,7 @@ export default function HeroSection({
         alt="Latar belakang Kampung Hidroponik"
         fill
         priority
-        style={{ objectFit: "cover" }}
+        style={{ objectFit: "cover", objectPosition: "center bottom" }}
         className="z-0"
       />
       {/* ── Overlay ───────────────────────────────────────────
@@ -41,16 +41,19 @@ export default function HeroSection({
                 Ensures text legibility over any bg image
                 inset-0 → covers full section
             ──────────────────────────────────────────────────── */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+      <div className="absolute inset-0 bg-black/40 md:bg-black/50" />
 
       {/* ── Content ───────────────────────────────────────────
                 relative + z-20 → sits above both image (z-0) and overlay (z-10) 
                 pb-10 px-6 → breathing room from viewport edges
             ──────────────────────────────────────────────────── */}
-      <div className="relative z-20 flex flex-col gap-4 px-6 ">
+      <div className="relative z-20 flex flex-col gap-8 px-6 md:px-16 lg:px-24 pb-8 md:pb-20">
         <HeroContent
           title={siteSettings?.siteTitle ?? "Tentang Kami"}
-          description={siteSettings?.description ?? " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod  tempor incididunt ut labore et dolore magna aliqua. "}
+          description={
+            siteSettings?.description ??
+            " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod  tempor incididunt ut labore et dolore magna aliqua. "
+          }
         />
         <BackButton href="/blog" label="Baca Blog" />
       </div>

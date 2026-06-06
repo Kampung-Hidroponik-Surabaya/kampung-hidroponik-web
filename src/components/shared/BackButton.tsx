@@ -2,7 +2,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import { Search } from "lucide-react";
 
 interface BackButtonProps {
   label?: string;
@@ -26,16 +26,10 @@ export default function BackButton({
   return (
     <button
       onClick={handleClick}
-      className="flex items-center rounded-lg bg-[#76453B] font-title font-normal text-white transition-opacity hover:opacity-80"
-      style={{
-        width: "115px",
-        height: "36px",
-        padding: "7px 8px 10px 9px",
-        gap: "12px",
-        fontSize: "14px",
-      }}
+      className="flex items-center rounded-lg bg-[#76453B] font-title font-normal text-white transition-opacity hover:opacity-80 gap-3 text-sm"
+      style={{ width: "115px", height: "36px", padding: "7px 8px 10px 9px" }}
     >
-      <ArrowLeft size={16} className="shrink-0" />
+      <Search size={16} strokeWidth={2} color="#FFFFFF" />
       {label}
     </button>
   );
