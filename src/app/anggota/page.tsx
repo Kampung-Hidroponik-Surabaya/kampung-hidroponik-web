@@ -47,7 +47,35 @@ export default async function MembersPage() {
                 />
               ))}
             </div>
+            {/* guard: no members published yet → empty state */}
+            {members.length === 0 ? (
+              <p className="font-sans text-brand-brown/60">
+                Belum ada anggota yang ditambahkan.
+              </p>
+            ) : (
+              <>
+                {/* Mobile: alternating reverse layout */}
+                <div
+                  className="flex flex-col md:hidden"
+                  style={{ gap: "65px" }}
+                >
+                  {members.map((member, index) => (
+                    <MemberCard
+                      key={member._id}
+                      member={member}
+                      reverse={index % 2 !== 0}
+                    />
+                  ))}
+                </div>
 
+                {/* Desktop: 2 column grid */}
+                <div className="hidden md:grid md:grid-cols-2 md:gap-16">
+                  {members.map((member) => (
+                    <MemberCard key={member._id} member={member} />
+                  ))}
+                </div>
+              </>
+            )}
             {/* Desktop: 2 column grid */}
             <div className="hidden md:grid md:grid-cols-2 md:gap-16">
               {members.map((member) => (

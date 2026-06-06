@@ -11,9 +11,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  experimental: {
-    middlewarePrefetch: "flexible",
-  },
 };
 
 export default nextConfig;
