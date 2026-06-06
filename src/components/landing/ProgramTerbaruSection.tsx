@@ -57,8 +57,8 @@ function ProgramCard({
           src={imageUrl}
           alt={label}
           fill
+          sizes="(max-width: 768px) 100vw, 60vw"
           style={{ objectFit: "cover" }}
-          className="z-0 transition-transform duration-300 group-hover:scale-110"
         />
       ) : (
         <div

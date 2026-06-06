@@ -14,7 +14,6 @@ export const CATEGORIES = [
   "Berita",
   "Edukasi",
   "Kegiatan",
-  "Kegiatan",
   "Artikel",
 ] as const;
 

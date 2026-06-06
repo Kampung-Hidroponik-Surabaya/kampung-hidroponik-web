@@ -21,7 +21,7 @@ export default function RekommendasiBlogSection({
         backgroundColor: "var(--brand-brown)", // Fallback for browsers that don't support CSS variables
         backgroundImage: "url('/images/cut-liquid-bg-1-brown.png')",
         backgroundSize: "100% 100%",
-        minHeight: "clamp(500px, calc(100vw * 1.229), 700px)",
+        minHeight: "clamp(600px, calc(100vw * 1.5), 900px)",
       }}
     >
       <div className="relative z-10">

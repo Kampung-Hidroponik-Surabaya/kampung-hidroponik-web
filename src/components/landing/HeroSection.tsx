@@ -33,8 +33,8 @@ export default function HeroSection({
         alt="Latar belakang Kampung Hidroponik"
         fill
         priority
+        sizes="100vw"
         style={{ objectFit: "cover", objectPosition: "center bottom" }}
-        className="z-0"
       />
       {/* ── Overlay ───────────────────────────────────────────
                 Dark gradient from bottom → top

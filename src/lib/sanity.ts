@@ -1,6 +1,5 @@
-import {createClient} from '@sanity/client'
-import imageUrlBuilder from '@sanity/image-url'
-import type {SanityImageSource} from '@sanity/image-url/lib/types/types'
+import { createClient } from "@sanity/client";
+import imageUrlBuilder from "@sanity/image-url";
 
 // ── Sanity client instance ─────────────────────────────────────────────────
 // Single export reused across all server components and GROQ queries
@@ -12,13 +11,13 @@ export const sanityClient = createClient({
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
   apiVersion: process.env.NEXT_PUBLIC_SANITY_API_VERSION!,
   useCdn: true,
-})
+});
 
 // ── Image URL builder ──────────────────────────────────────────────────────
 // Takes a Sanity image asset reference object → returns a URL builder instance
 // Usage: urlFor(post.mainImage).width(800).url()
-const builder = imageUrlBuilder(sanityClient)
+const builder = imageUrlBuilder(sanityClient);
 
-export function urlFor(source: SanityImageSource) {
-  return builder.image(source)
+export function urlFor(source: any) {
+  return builder.image(source);
 }
