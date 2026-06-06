@@ -2,6 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
+    unoptimized: true,
+    domains: ["cdn.sanity.io"],
     remotePatterns: [
       {
         protocol: "https",
@@ -13,3 +15,5 @@ const nextConfig: NextConfig = {
     middlewarePrefetch: "flexible",
   },
 };
+
+export default nextConfig;

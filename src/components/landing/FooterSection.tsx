@@ -7,10 +7,11 @@ const navLinks = [
   { href: "/", label: "Beranda" },
   { href: "/blog", label: "Blog" },
   { href: "/anggota", label: "Member" },
+  { href: "/tentang", label: "Tentang Kami" },
 ];
 
 export default function FooterSection({
-  siteSettings, 
+  siteSettings,
 }: {
   siteSettings: SiteSettings | null; // passed from parent when Sanity wired
 }) {
@@ -111,7 +112,7 @@ export default function FooterSection({
             <div>
               <p className="font-title text-sm font-bold text-white">Email:</p>
               <p className="font-title text-sm font-normal text-white">
-                {siteSettings?.email ?? '@loremipsum@gmail.com'}
+                {siteSettings?.email ?? "@loremipsum@gmail.com"}
               </p>
             </div>
             <div>
@@ -119,7 +120,7 @@ export default function FooterSection({
                 No. Telp:
               </p>
               <p className="font-title text-sm font-normal text-white">
-                {siteSettings?.phone ?? '(67) 999-999'}
+                {siteSettings?.phone ?? "(67) 999-999"}
               </p>
             </div>
           </div>
@@ -135,7 +136,8 @@ export default function FooterSection({
           © Kampung Hidroponik Surabaya
         </span>
         <span className="font-sans text-sm font-normal text-brand-cream">
-          {siteSettings?.address ?? 'Jl. Medayu Utara XIII No.1, Medokan Ayu, Kec. Rungkut, Surabaya, Jawa Timur 60295'}
+          {siteSettings?.address ??
+            "Jl. Medayu Utara XIII No.1, Medokan Ayu, Kec. Rungkut, Surabaya, Jawa Timur 60295"}
         </span>
       </div>
     </footer>
