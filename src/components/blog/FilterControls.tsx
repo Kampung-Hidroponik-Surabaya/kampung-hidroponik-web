@@ -14,9 +14,11 @@ export const CATEGORIES = [
   "Berita",
   "Edukasi",
   "Kegiatan",
+  "Kegiatan",
+  "Artikel",
 ] as const;
 
-export type Category = string
+export type Category = string;
 
 // ── Sort options ──────────────────────────────────────────────
 export const SORT_OPTIONS = [

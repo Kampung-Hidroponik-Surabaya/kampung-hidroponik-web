@@ -13,16 +13,14 @@ import BlogCard, { type BlogCardProps } from "@/components/shared/BlogCard";
 import DotPagination from "@/components/shared/DotPagination";
 
 // Parent: RekomendasiBlogSection (landing) or blog/page.tsx
-  
+
 interface BlogCardCarouselProps {
   // items: array of BlogCardProps — passed from parent section
   // when Sanity fetch is wired; falls back to PLACEHOLDER_POSTS
   items: BlogCardProps[];
 }
 
-export default function BlogCardCarousel({
-  items,
-}: BlogCardCarouselProps) {
+export default function BlogCardCarousel({ items }: BlogCardCarouselProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -54,7 +52,7 @@ export default function BlogCardCarousel({
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="flex gap-4 overflow-x-auto px-4 pb-4 md:px-8 lg:px-16">
       {/* ── Scroll container ──────────────────────────────
                 flex + overflow-x-auto → horizontal scroll
                 [scroll-snap-type:x_mandatory] → snap behavior
@@ -78,7 +76,7 @@ export default function BlogCardCarousel({
           <BlogCard
             key={post.slug}
             {...post}
-            className="scroll-snap-align-start w-[80vw] flex-shrink-0"
+            className="scroll-snap-align-start w-[80vw] md:w-[40vw] lg:w-[30vw] flex-shrink-0"
           />
         ))}
       </div>

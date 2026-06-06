@@ -10,10 +10,14 @@ export default function GallerySection({
 }: {
   images: GalleryImage[]; // passed from parent when Sanity wired
 }) {
-  const photos = images.slice(0, 5).map((img) => ({
-    src: urlFor(img.image).width(400).url(),
-    alt: img.image.alt ?? img.title,
-  }))
+  const photos = images
+    .filter((img) => img.image?.asset) // ← buang yang tidak punya image
+    .slice(0, 5)
+    .map((img) => ({
+      src: urlFor(img.image).width(400).url(),
+      alt: img.image.alt ?? img.title,
+    }));
+  if (photos.length < 5) return null;
   return (
     <section
       className="relative"

@@ -130,13 +130,16 @@ export default function ProgramTerbaruSection({
   const cards = programs.slice(0, 3).map((program, index) => ({
     id: program._id,
     label: program.title,
-    imageUrl: program.image?.asset ? urlFor(program.image).width(600).url() : null,
+    imageUrl: program.image?.asset
+      ? urlFor(program.image).width(600).url()
+      : null,
     bgColor: BG_COLORS[index % BG_COLORS.length],
     href: `/blog?program=${program._id}`, // Example link to program-specific blog listing
   }));
 
   const [large, ...small] = cards;
-
+  // Jangan render kalau data kurang dari 3
+  if (!large || small.length < 2) return null;
   return (
     <section className="bg-brand-cream px-4 py-8">
       <h2 className="section-title text-brand-teal">Program Terbaru</h2>

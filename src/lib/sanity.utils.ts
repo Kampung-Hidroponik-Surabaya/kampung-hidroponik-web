@@ -1,30 +1,37 @@
 // src/lib/sanity.utils.ts — NEW utility file
 // Transforms Post → BlogCardProps so BlogCard JSX never changes
 
-import {urlFor} from './sanity'
-import type {Post} from './sanity.types'
-import type {BlogCardProps} from '@/components/shared/BlogCard'
+import { urlFor } from "./sanity";
+import type { Post } from "./sanity.types";
+import type { BlogCardProps } from "@/components/shared/BlogCard";
 
 // BG_COLORS: cycle through brand colors when no image exists
-const BG_COLORS = ['bg-brand-teal', 'bg-brand-tan', 'bg-brand-brown']
+const BG_COLORS = ["bg-brand-teal", "bg-brand-tan", "bg-brand-brown"];
 
-export function postToBlogCardProps(post: Post, index: number = 0): BlogCardProps {
+export function postToBlogCardProps(
+  post: Post,
+  index: number = 0,
+): BlogCardProps {
+  const slugString =
+    typeof post.slug === "string"
+      ? post.slug
+      : ((post.slug as { current: string })?.current ?? "");
+
   return {
-    slug: post.slug as unknown as string,
+    slug: slugString, // ← ini yang dipakai BlogCard untuk /blog/${slug}
     title: post.title,
-    author: post.author?.name ?? 'Admin',
-    // Format ISO → "3 Jan 2026" matching existing date format
+    author: post.author?.name ?? "Admin",
     date: post.publishedAt
-      ? new Intl.DateTimeFormat('id-ID', {
-          day: 'numeric',
-          month: 'short',
-          year: 'numeric',
+      ? new Intl.DateTimeFormat("id-ID", {
+          day: "numeric",
+          month: "short",
+          year: "numeric",
         }).format(new Date(post.publishedAt))
-      : '',
+      : "",
     imageUrl: post.mainImage?.asset
       ? urlFor(post.mainImage).width(600).url()
       : null,
     bgColor: BG_COLORS[index % BG_COLORS.length],
     category: post.category?.title,
-  }
+  };
 }
