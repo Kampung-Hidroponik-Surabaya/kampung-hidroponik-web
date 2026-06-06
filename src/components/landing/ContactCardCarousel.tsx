@@ -13,45 +13,33 @@ import ContactCard, {
   type ContactCardProps,
 } from "@/components/landing/ContactCard";
 import DotPagination from "@/components/shared/DotPagination";
+import type { Contact } from "@/lib/sanity.types";
 
-// ── Placeholder data ──────────────────────────────────────────
-// Replace with Sanity fetch in ContactUsSection later:
-// *[_type == "contact"] | order(order asc) {
-//   _id, name, phone, avatar
-// }
-const PLACEHOLDER_CONTACTS: ContactCardProps[] = [
-  {
-    id: "1",
-    name: "Lorem Ipsum",
-    phone: "6281277777777",
-    bgColor: "bg-brand-teal",
-  },
-  {
-    id: "2",
-    name: "Lorem Ipsum",
-    phone: "6767676767",
-    bgColor: "bg-brand-tan",
-  },
-  {
-    id: "3",
-    name: "Lorem Ipsum",
-    phone: "6767676767",
-    bgColor: "bg-brand-brown",
-  },
-];
+const BG_COLORS = ["bg-brand-teal", "bg-brand-tan", "bg-brand-brown"] as const;
+
+function contactToCardProps(contact: Contact, index: number): ContactCardProps {
+  return {
+    id:      contact._id,
+    name:    contact.name,
+    phone:   contact.phone,
+    bgColor: BG_COLORS[index % BG_COLORS.length],
+  }
+}
 
 interface ContactCardCarouselProps {
-  // items: passed from parent when Sanity wired
-  // falls back to PLACEHOLDER_CONTACTS if not provided
-  items?: ContactCardProps[];
+  // items required — parent always passes Sanity data
+  contacts: Contact[];
 }
 
 export default function ContactCardCarousel({
-  items = PLACEHOLDER_CONTACTS,
+  contacts,
 }: ContactCardCarouselProps) {
+  // Transform once at render boundary — not in parent
+  // Keeps ContactUsSection clean (no transform logic leaking up)
+  const items = contacts.map(contactToCardProps)
+
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-
   // ── Scroll sync ───────────────────────────────────────────
   // Mirrors BlogCardCarousel scroll sync exactly
   function handleScroll() {

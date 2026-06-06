@@ -7,8 +7,13 @@
 // ─────────────────────────────────────────────────────────────
 
 import BlogCardCarousel from "@/components/landing/BlogCardCarousel";
+import type { BlogCardProps } from "@/components/shared/BlogCard";
 
-export default function RekommendasiBlogSection() {
+export default function RekommendasiBlogSection({
+  items,
+}: {
+  items: BlogCardProps[]; // passed from parent when Sanity wired
+}) {
   return (
     <section
       className="relative px-4 py-16 md:py-24"
@@ -16,7 +21,7 @@ export default function RekommendasiBlogSection() {
         backgroundColor: "var(--brand-brown)", // Fallback for browsers that don't support CSS variables
         backgroundImage: "url('/images/cut-liquid-bg-1-brown.png')",
         backgroundSize: "100% 100%",
-        minHeight: "clamp(500px, calc(100vw * 1.229), 700px)",
+        minHeight: "clamp(600px, calc(100vw * 1.5), 900px)",
       }}
     >
       <div className="relative z-10">
@@ -36,7 +41,7 @@ export default function RekommendasiBlogSection() {
                     No props → uses PLACEHOLDER_POSTS internally
                     When Sanity wired: pass items={fetchedPosts}
                 ─────────────────────────────────────────────── */}
-        <BlogCardCarousel />
+        <BlogCardCarousel items={items} />
       </div>
     </section>
   );

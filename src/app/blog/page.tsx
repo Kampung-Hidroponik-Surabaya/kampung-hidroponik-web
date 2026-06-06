@@ -7,13 +7,46 @@
 //   2. BlogPageClient — cream search + teal blob grid
 // ─────────────────────────────────────────────────────────────
 
-import RekommendasiBlogSection from "@/components/landing/RekomendasiBlogSection";
+import RekomendasiBlogSection from "@/components/landing/RekomendasiBlogSection";
+import { getAllPosts, getAllCategories } from "@/lib/queries";
+import { postToBlogCardProps } from "@/lib/sanity.utils";
 import BlogPageClient from "@/components/blog/BlogPageClient";
+import type { BlogPostItem } from "@/components/blog/BlogPageClient";
 import FooterSection from "@/components/landing/FooterSection";
+import { getSiteSettings } from "@/lib/queries";
+import { getFeaturedPosts } from "@/lib/queries";
 
+
+export const revalidate = 60;
 export const metadata = { title: "Blog" };
 
-export default function BlogPage() {
+export default async function BlogPage() {
+    const [posts, categories] = await Promise.all([
+        getAllPosts(),
+        getAllCategories(),
+    ]);
+
+    const [
+        featuredPosts,
+        siteSettings,
+      ] = await Promise.all([
+        getFeaturedPosts(),
+        getSiteSettings(),
+      ])
+
+    const featuredItems = featuredPosts.map((post, index) => postToBlogCardProps(post, index))
+
+    // Transform Post[] -> BlogPostItem[] at server boundary
+    // BlogPageClient receives same shape it already expects
+    const blogItems: BlogPostItem[] = posts.map((post, index) => ({
+        ...postToBlogCardProps(post, index),
+        // rawDate: ISO string for sort comparison
+        rawDate: post.publishedAt ?? '',
+        // category: cast to Category string union via title
+        // FilterControls Category type must include dynamic values
+        category: (post.category?.title ?? 'Lainnya') as BlogPostItem['category'],
+    }));
+
     return (
         <main style={{ paddingTop: "var(--nav-height, 64px)" }}>
             {/* ── Rekomendasi Blog ──────────────────────────────
@@ -22,15 +55,15 @@ export default function BlogPage() {
                 Already working + responsive
             ─────────────────────────────────────────────── */}
             <div className="mt-8">
-                <RekommendasiBlogSection />
+                <RekomendasiBlogSection items={featuredItems} />
             </div>
 
             {/* ── Blog search + list ────────────────────────────
                 BlogPageClient owns all filter state
                 Renders BlogSearchSection + BlogListSection
             ─────────────────────────────────────────────── */}
-            <BlogPageClient />
-            <FooterSection />
+            <BlogPageClient posts={blogItems} />
+            <FooterSection siteSettings={siteSettings} />
         </main>
     );
 }

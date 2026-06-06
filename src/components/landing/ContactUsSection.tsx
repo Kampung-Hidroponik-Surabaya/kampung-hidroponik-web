@@ -7,9 +7,14 @@
 // ─────────────────────────────────────────────────────────────
 
 import ContactCardCarousel from "@/components/landing/ContactCardCarousel";
+import type { Contact } from "@/lib/sanity.types";
 
-export default function ContactUsSection() {
-  return (
+export default function ContactUsSection({
+  contacts,
+}: {
+  contacts: Contact[]
+}) {
+    return (
     <section className="bg-brand-cream px-4 py-16">
       {/* ── Section Heading ───────────────────────────────
                 section-title → global font size token
@@ -24,7 +29,7 @@ export default function ContactUsSection() {
                 No props → uses PLACEHOLDER_CONTACTS internally
                 When Sanity wired: pass items={fetchedContacts}
             ─────────────────────────────────────────────── */}
-      <ContactCardCarousel />
+      <ContactCardCarousel contacts={contacts} />
     </section>
   );
 }

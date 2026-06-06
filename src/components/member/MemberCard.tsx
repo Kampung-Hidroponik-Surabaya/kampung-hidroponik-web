@@ -1,15 +1,7 @@
 // src/components/members/MemberCard.tsx
 import Image from "next/image";
-
-export interface MemberData {
-  id: number;
-  label: string;
-  name: string;
-  description: string;
-  photo: string;
-  instagram: string;
-  facebook: string;
-}
+import { urlFor } from "@/lib/sanity";
+import type { Member } from "@/lib/sanity.types";
 
 function IconInstagram() {
   return (
@@ -48,7 +40,7 @@ function IconFacebook() {
 }
 
 interface MemberCardProps {
-  member: MemberData;
+  member: Member;
   reverse?: boolean;
 }
 
@@ -56,6 +48,20 @@ export default function MemberCard({
   member,
   reverse = false,
 }: MemberCardProps) {
+  let photoUrl = "/images/member-placeholder.png";
+  try {
+    if (member.photo && Object.keys(member.photo).length > 0) {
+      photoUrl = urlFor(member.photo).width(314).height(392).url();
+    }
+  } catch {
+    photoUrl = "/images/member-placeholder.png";
+  }
+  const label = member.jabatan;
+  const name = member.name;
+  const desc = member.description ?? "";
+  const igHref = member.instagram ?? "#";
+  const fbHref = member.facebook ?? "#";
+
   return (
     <div
       className={`flex items-stretch gap-4 md:gap-10 ${reverse ? "flex-row-reverse" : "flex-row"}`}
@@ -71,8 +77,8 @@ export default function MemberCard({
         }}
       >
         <Image
-          src={member.photo}
-          alt={member.name}
+          src={photoUrl}
+          alt={label}
           width={157}
           height={196}
           className="size-full object-cover"
@@ -89,26 +95,26 @@ export default function MemberCard({
             className="font-title font-bold"
             style={{ fontSize: "12.379px", color: "#43766C" }}
           >
-            {member.label}
+            {label}
           </span>
           <span
             className="font-title font-bold leading-tight"
             style={{ fontSize: "24.698px", color: "#43766C" }}
           >
-            {member.name}
+            {name}
           </span>
           <p
             className="text-justify font-sans font-normal"
             style={{ fontSize: "11px", color: "#43766C" }}
           >
-            {member.description}
+            {desc}
           </p>
         </div>
 
         {/* Social icons pinned to bottom */}
         <div className="flex items-center" style={{ gap: "15.02px" }}>
           <a
-            href={member.instagram}
+            href={igHref}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
@@ -116,7 +122,7 @@ export default function MemberCard({
             <IconInstagram />
           </a>
           <a
-            href={member.facebook}
+            href={fbHref}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Facebook"
