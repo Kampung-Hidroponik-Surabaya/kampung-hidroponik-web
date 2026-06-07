@@ -6,7 +6,8 @@ import type { SiteSettings } from "@/lib/sanity.types";
 const navLinks = [
   { href: "/", label: "Beranda" },
   { href: "/blog", label: "Blog" },
-  { href: "/anggota", label: "Member" },
+  { href: "/anggota", label: "Anggota" },
+  { href: "/tentang", label: "Tentang Kami" },
 ];
 
 export default function FooterSection({

@@ -81,3 +81,11 @@ export type Contact = {
   phone: string
   orderRank: string
 }
+
+export type AboutPage = {
+  heroImage?: SanityImageAsset
+  heroTagline: string
+  shortDescription: string
+  visi: string
+  misi: string[]
+}

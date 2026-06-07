@@ -1,5 +1,5 @@
 import {sanityClient} from './sanity'
-import type {Post, Member, GalleryImage, Program, SiteSettings, Category, Contact} from './sanity.types'
+import type {Post, Member, GalleryImage, Program, SiteSettings, Category, Contact, AboutPage} from './sanity.types'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // ARCHITECTURAL NOTES
@@ -235,4 +235,23 @@ const ALL_CONTACTS_QUERY = `
 
 export async function getAllContacts(): Promise<Contact[]> {
   return sanityClient.fetch(ALL_CONTACTS_QUERY)
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// ABOUT PAGE QUERY
+// ══════════════════════════════════════════════════════════════════════════════
+
+// Fixed documentId 'aboutPage' → singleton, always returns single object
+const ABOUT_PAGE_QUERY = `
+  *[_type == "aboutPage" && _id == "aboutPage"][0] {
+    heroImage { asset, alt, hotspot },
+    heroTagline,
+    shortDescription,
+    visi,
+    misi
+  }
+`
+
+export async function getAboutPage(): Promise<AboutPage | null> {
+  return sanityClient.fetch(ABOUT_PAGE_QUERY)
 }

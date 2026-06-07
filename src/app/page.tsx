@@ -33,16 +33,14 @@ export default async function HomePage() {
   ])
 
   const featuredItems = featuredPosts.map((p, i) => postToBlogCardProps(p, i))
-  const latestItems   = latestPosts.map((p, i) => postToBlogCardProps(p, i))
 
   return (
     <main>
       <HeroSection siteSettings={siteSettings} />
-      <RekomendasiBlogSection items={featuredItems} />
-      <BlogCardCarousel items={latestItems} />
       <ProgramTerbaruSection programs={activePrograms} />
-      <GallerySection images={galleryImages} />
+      <RekomendasiBlogSection items={featuredItems} />
       <ContactUsSection contacts={contacts} />
+      <GallerySection images={galleryImages} />
       <FooterSection siteSettings={siteSettings} />
     </main>
   )
