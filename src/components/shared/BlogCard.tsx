@@ -86,7 +86,7 @@ export default function BlogCard({
             pill shape, brand-teal bg
         ─────────────────────────────────────────────── */}
         {category && <span className="w-fit pill">{category}</span>}
-        <h3 className="line-clamp-2 origin-left font-title text-base font-bold text-brand-cream ...">
+        <h3 className="line-clamp-2 text-outline origin-left font-title text-base font-bold text-brand-cream ...">
           {title}
         </h3>
         <div className="flex items-center justify-between gap-2">
