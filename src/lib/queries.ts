@@ -134,7 +134,10 @@ const ALL_MEMBERS_QUERY = `
     name,
     jabatan,
     photo { asset, hotspot },
-    orderRank
+    orderRank,
+    description,
+    instagram,
+    facebook
   }
 `
 
@@ -173,7 +176,8 @@ const ALL_PROGRAMS_QUERY = `
     description,
     image { asset, hotspot, alt },
     date,
-    active
+    active,
+    "relatedPost": relatedPost-> { "slug": slug.current }
   }
 `
 
@@ -189,7 +193,8 @@ const ACTIVE_PROGRAMS_QUERY = `
     description,
     image { asset, hotspot, alt },
     date,
-    active
+    active,
+    "relatedPost": relatedPost-> { "slug": slug.current }
   }
 `
 
