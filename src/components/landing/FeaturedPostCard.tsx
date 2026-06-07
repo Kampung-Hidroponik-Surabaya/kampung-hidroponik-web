@@ -18,7 +18,7 @@ import { ArrowRight } from "lucide-react";
 // }
 const PLACEHOLDER_POST = {
   slug: "placeholder-post",
-  title: "Lorem ipsum dolor sit ametttttttt",
+  title: "Lorem ipsum dolor sit amet",
   description:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   imageUrl: null as string | null,

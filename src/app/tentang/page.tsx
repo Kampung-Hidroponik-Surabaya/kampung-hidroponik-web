@@ -115,7 +115,7 @@ export default async function TentangPage() {
                         </h2>
                         {about?.misi && about.misi.length > 0 ? (
                             <ol className="flex flex-col gap-3">
-                                {about.misi.map((item, i) => (
+                                {about.misi.map((item: string, i: number) => (
                                     <li
                                         key={i}
                                         className="flex gap-3 font-sans text-base leading-relaxed text-brand-cream/90"
@@ -158,7 +158,7 @@ export default async function TentangPage() {
                                 <span className="font-sans text-xs font-medium uppercase tracking-wide text-brand-tan">
                                     No. Telp
                                 </span>
-                                
+                                <a
                                     href={`tel:${settings.phone}`}
                                     className="font-sans text-base text-brand-teal hover:underline"
                                 >
@@ -175,7 +175,7 @@ export default async function TentangPage() {
                                 <span className="font-sans text-xs font-medium uppercase tracking-wide text-brand-tan">
                                     Email
                                 </span>
-                                
+                                <a
                                     href={`mailto:${settings.email}`}
                                     className="font-sans text-base text-brand-teal hover:underline"
                                 >
@@ -192,7 +192,7 @@ export default async function TentangPage() {
                                 <span className="font-sans text-xs font-medium uppercase tracking-wide text-brand-tan">
                                     Instagram
                                 </span>
-                                
+                                <a
                                     href={`https://instagram.com/${settings.instagram}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
