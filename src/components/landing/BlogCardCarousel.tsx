@@ -52,7 +52,7 @@ export default function BlogCardCarousel({ items }: BlogCardCarouselProps) {
   }
 
   return (
-    <div className="flex gap-4 overflow-x-auto px-4 pb-4 md:px-8 lg:px-16">
+    <div className="flex flex-col">
       {/* ── Scroll container ──────────────────────────────
                 flex + overflow-x-auto → horizontal scroll
                 [scroll-snap-type:x_mandatory] → snap behavior
@@ -66,7 +66,7 @@ export default function BlogCardCarousel({ items }: BlogCardCarouselProps) {
         ref={scrollRef}
         onScroll={handleScroll}
         className={[
-          "flex gap-4 overflow-x-auto px-4 pb-4",
+          "flex gap-4 overflow-x-auto px-4 pb-4 md:px-8 lg:px-16",
           "[scroll-snap-type:x_mandatory]",
           "[&::-webkit-scrollbar]:hidden",
         ].join(" ")}

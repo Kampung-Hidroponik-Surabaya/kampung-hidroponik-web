@@ -22,21 +22,13 @@ export default function GallerySection({
     <section
       className="relative"
       style={{
-        backgroundImage: "url('/images/liquid-bg-gallery.png')",
+        backgroundImage: "url('/images/cut-liquid-bg-2-teal.png')",
         backgroundSize: "100% 100%",
         backgroundRepeat: "no-repeat",
       }}
     >
       {/* ── Content ───────────────────────────────────────── */}
-      <div
-        style={{
-          paddingLeft: "30px",
-          paddingRight: "39px",
-          paddingBottom: "96px",
-        }}
-      >
-        {/* Title */}
-        <div className="px-[30px] md:px-[60px] lg:px-[80px] pb-[96px]">
+      <div className="px-[30px] md:px-[60px] lg:px-[80px] pb-[96px]">
           <h2 className="font-title font-bold text-[#F8FAE5] pt-[55px] text-[46px] md:text-[56px] lg:text-[64px]">
             Gallery
           </h2>
@@ -134,7 +126,6 @@ export default function GallerySection({
             </div>
           </div>
         </div>
-      </div>
     </section>
   );
 }

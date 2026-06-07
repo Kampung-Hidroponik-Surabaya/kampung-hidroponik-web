@@ -25,7 +25,7 @@ export default function ContactCard({
     <div
       className={[
         // w-[80vw] → 1 card visible + peek of next
-        "flex w-[60vw] flex-shrink-0 scroll-snap-align-start",
+        "flex w-[60vw] sm:w-[40vw] md:w-[30vw] lg:w-[220px] flex-shrink-0 [scroll-snap-align:start]",
         // transparent bg — no fill
         // flex-col centered → avatar top, phone mid, name bot
         "flex-col items-center gap-3 px-6 py-4",
@@ -81,7 +81,7 @@ export default function ContactCard({
                 text-brand-teal → GSM spec
             ─────────────────────────────────────────────── */}
       <a
-        href={`wa.me/+${cleanPhone}`}
+        href={`https://wa.me/+${cleanPhone}`}
         className={[
           "flex items-center gap-1.5 rounded-full",
           "border border-brand-teal px-4 py-2",
